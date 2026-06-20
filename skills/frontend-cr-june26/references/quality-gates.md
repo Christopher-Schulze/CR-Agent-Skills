@@ -38,7 +38,9 @@ Use this reference before implementation and during final verification for subst
 
 ## Premium Finish Gate
 
-- The first impression must feel premium for the intended surface: controlled typography, deliberate spacing, styled controls, coherent material treatment, high-quality assets, and one subject-specific signature moment.
+- The first impression must feel premium for the intended surface: controlled typography, deliberate spacing, styled controls, coherent material treatment, high-quality assets, and a clear product-specific signal; when the surface supports it, one signature moment.
+- Above the fold or in the first visible viewport, the UI must look better than merely solid. If it feels only okay, competent, or generic, repair hierarchy, typography, spacing, imagery, component styling, and the primary product signal before final.
+- Aim for a heads-turning, product-specific moment when the surface can support it. This is not mandatory for quiet utility or dense operational surfaces; when spectacle would hurt the task, make the standout quality come from precision, restraint, clarity, and exact product fit.
 - Reject before final if the UI feels cheap, raw, generic, stock-like, default-component-driven, visually noisy without purpose, or under-designed for the product's audience and workflow.
 - Premium means considered, precise, and product-appropriate; it does not mean maximum decoration, luxury styling everywhere, or ignoring a utilitarian user brief.
 
@@ -70,8 +72,14 @@ Use this reference before implementation and during final verification for subst
 
 ## Micro-Detail Polish Gate
 
-- Inspect the details that make a UI feel expensive: icon optical alignment, text baselines, control padding, border contrast, shadow softness, radius consistency, focus rings, loading/empty/error states, selected/hover/disabled states, and mobile line breaks.
+- Inspect the ten detail classes that make a UI feel expensive: typography hierarchy, text baselines, icon optical alignment, radius consistency, shadow softness, border contrast, control padding, image crops/asset edges, state styling, and mobile line breaks.
+- Check these details everywhere they appear, not just in the hero: nav, buttons, cards, forms, tables, sidebars, modals, empty states, loading states, error states, selected states, hover/focus/disabled states, and mobile breakpoints.
 - Repair any detail that makes the interface feel generated, unfinished, mismatched, or carelessly assembled even when the overall layout is correct.
+
+## AI-Slop Residue Repair Loop
+
+- For every AI-slop or AI-default residue item found, name the concrete repair and apply it when feasible before final: stronger subject fit, better content realism, sharper type, more intentional spacing, less filler chrome, cleaner component system, better asset fit, or a more specific first viewport.
+- Do not only identify AI-slop residue. Keep editing until fixable residue is repaired, or record the concrete blocker that makes repair impossible.
 
 ## Taste Review Gate
 
@@ -89,6 +97,7 @@ Run this after fidelity and before final response:
 - Wow factor: what is the one subject-specific screenshot-worthy moment, and is it earned by the product rather than decoration?
 - User delight: would the intended user feel the result is considered, high-end, and useful without sacrificing clarity?
 - Final restraint check: which accessory-like effect, badge, glow, wrapper, icon, decoration, or motion cue can be removed or quieted because it adds noise without meaning?
-- Next three fixes: list the smallest concrete fixes that would most improve perceived quality.
+- World-class agency 10-fix review: list the ten highest-impact fixes a top design agency would still demand before signoff. Cover visual thesis, typography, spacing, component polish, material coherence, icons/assets, motion, interaction states, responsive behavior, and AI-slop residue.
+- One-more-pass rule: after the first version that feels finished, ask what would be fixed with 20 more minutes, choose the highest-impact feasible repairs, and implement them before final instead of only reporting them.
 
-If the strongest visual moment is weak, the identity test fails, first-use comprehension fails, interaction proof is missing, or any raw/default component smell remains, final response is blocked. Keep editing before handoff. Do not hide behind "matches the concept" when the concept or implementation still feels weak.
+If the above-fold or first visible viewport does not feel premium for the intended surface, the strongest visual moment is weak, the identity test fails, first-use comprehension fails, interaction proof is missing, AI-slop residue remains fixable, or any raw/default component smell remains, final response is blocked. Keep editing before handoff. Do not hide behind "matches the concept" when the concept or implementation still feels weak.

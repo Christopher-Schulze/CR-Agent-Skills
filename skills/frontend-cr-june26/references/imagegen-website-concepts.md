@@ -59,6 +59,7 @@ Every concept should feel like a professional product mockup by a senior product
 - High-quality assets for logos, brand marks, hero imagery, product renders, background scenes, illustrations, textures, thumbnails, posters, avatars, or empty states. Product/background assets should be fully rendered with consistent branding and in-image text when that text belongs to the asset.
 - Purposeful motion/interaction cues that can be implemented later.
 - Specific, non-generic copy when the user has not supplied exact copy.
+- Aim for a heads-turning, product-specific moment when the surface can support it. This is not mandatory for quiet utility work; when spectacle would hurt the task, make the standout quality come from precision, clarity, restraint, and exact product fit.
 
 Default to roughly 8.5/10 finish and distinctiveness: art-directed, sophisticated, product-appropriate, intensity-matched, and still implementable. Polished means edited, intentional, legible, not cluttered, not sterile, and not repetitive.
 

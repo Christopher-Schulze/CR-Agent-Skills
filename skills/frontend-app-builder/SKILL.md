@@ -69,7 +69,6 @@ Load the most relevant supplemental reference before substantial concepting:
 - `references/games.md` for browser games, playable scenes, toy apps, simulations, and highly animated interactive surfaces.
 - `references/technology-stack.md` before choosing frameworks, installing packages, changing frontend tooling, or relying on current Tailwind/shadcn/ui/motion syntax.
 - `references/quality-gates.md` before implementation and final verification for substantial UI.
-- `references/forward-testing.md` only when maintaining or evaluating this skill itself, not during ordinary app builds.
 
 Before calling Image Gen:
 
@@ -319,10 +318,6 @@ Hard stops: clipped primary content, accidental wrapping, prototype-looking layo
 - Games: preserve the art direction with Image Gen assets for sprites, tiles/platforms, collectibles, hazards, goals/checkpoints, props, and background/parallax layers. Verify assets load, scale, animate or swap state correctly, align with collision geometry, and support movement, action/jump/drag behavior, scoring, hazards, and restart.
 - Media surfaces: verify real media load, duration, play/pause, seek/progress, and visible frame changes.
 - Forms/booking/purchase/restaurant flows: verify the main transaction path and confirmation state.
-
-## Forward-Test Set
-
-When maintaining this skill, read `references/forward-testing.md` and test major revisions against the full prompt set and scorecard before adding more broad wording. For major gate or workflow changes, run the full prompt set, or at least 5 hard prompts, with real concepts, implementations, screenshots, verification behavior, and concise final handoffs before treating the wording as proven. Passing means the skill produces different subject-grounded concepts, clear implementation inventories, feasible reusable component systems, real interaction proof, and browser screenshots that survive the fidelity, first-use, and final-polish gates; repeated artifact evidence beats intuition.
 
 ## Final Response
 

@@ -36,13 +36,19 @@ Use this reference before implementation and during final verification for subst
 - Within five seconds, the intended user should understand what this is, what matters first, what action is available, and what state/result the UI is showing.
 - If the first viewport is visually impressive but the product, workflow, action, or current state is unclear, repair hierarchy, copy, data, and primary action before final.
 
+## Premium Finish Gate
+
+- The first impression must feel premium for the intended surface: controlled typography, deliberate spacing, styled controls, coherent material treatment, high-quality assets, and one subject-specific signature moment.
+- Reject before final if the UI feels cheap, raw, generic, stock-like, default-component-driven, visually noisy without purpose, or under-designed for the product's audience and workflow.
+- Premium means considered, precise, and product-appropriate; it does not mean maximum decoration, luxury styling everywhere, or ignoring a utilitarian user brief.
+
 ## Motion System Contract
 
 - Choose the motion implementation explicitly: Framer Motion, repo-native motion, Motion One, CSS transitions, View Transitions, canvas/Three.js loop, or no motion.
 - In React greenfield, prefer Framer Motion when animation is meaningful and the dependency is justified; otherwise use existing or simpler motion.
 - Define duration bands: microinteraction, entrance/reveal, panel/modal, page/section transition, and game/canvas loop if relevant.
 - Define easing character: precise, soft, springy, mechanical, premium, playful, or utilitarian.
-- Include one entrance/reveal pattern, one interaction/state transition pattern, and one optional product-tactility moment. Every cue must map to hierarchy, state, product tactility, or navigation.
+- Include one entrance/reveal pattern, one interaction/state transition pattern, and one optional product-tactility moment. Motion must feel choreographed, not attached; every cue must map to hierarchy, state, product tactility, navigation, or comprehension.
 - Use transform and opacity by default. Do not animate layout-shifting width, height, padding, border width, or flow-dependent properties unless there is a concrete reason and it is verified.
 - Respect `prefers-reduced-motion`; the reduced-motion version must still communicate state clearly.
 - Keep animation cheap: avoid constant decorative loops, expensive blur/filter animation, large repaints, and animation that competes with reading or task completion.
@@ -61,6 +67,11 @@ Use this reference before implementation and during final verification for subst
 - The primary interaction path must update real local UI state: selected, edited, filtered, submitted, confirmed, played, or generated result.
 - Visual-only controls fail unless the surface is intentionally static and that constraint is recorded.
 - Success, error, disabled, empty, loading, selected, and confirmation states should exist where the requested workflow implies them.
+
+## Micro-Detail Polish Gate
+
+- Inspect the details that make a UI feel expensive: icon optical alignment, text baselines, control padding, border contrast, shadow softness, radius consistency, focus rings, loading/empty/error states, selected/hover/disabled states, and mobile line breaks.
+- Repair any detail that makes the interface feel generated, unfinished, mismatched, or carelessly assembled even when the overall layout is correct.
 
 ## Taste Review Gate
 

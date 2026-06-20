@@ -36,6 +36,15 @@ Use this reference before implementation and during final verification for subst
 - Respect `prefers-reduced-motion`; the reduced-motion version must still communicate state clearly.
 - Keep animation cheap: avoid constant decorative loops, expensive blur/filter animation, large repaints, and animation that competes with reading or task completion.
 
+## Accessibility Gate
+
+- Keyboard navigation must reach every interactive control in a predictable order.
+- Focus rings must be visible against the actual rendered background.
+- Buttons must be buttons, links must be links, and inputs must have visible labels or appropriate accessible names.
+- Icon-only controls must have accessible names.
+- Critical information must never be hover-only.
+- Reduced-motion mode must remain usable and clear.
+
 ## Taste Review Gate
 
 Run this after fidelity and before final response:

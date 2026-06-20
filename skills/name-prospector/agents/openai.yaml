@@ -1,0 +1,4 @@
+interface:
+  display_name: "Name Prospector"
+  short_description: "Generate names, check domains, and map similar-name competitors."
+  default_prompt: "Use $name-prospector to generate a large shortlist of brand or product names for my idea, check likely domain availability, and identify competitors using similar names."

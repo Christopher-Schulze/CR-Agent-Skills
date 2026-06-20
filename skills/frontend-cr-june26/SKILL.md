@@ -1,9 +1,9 @@
 ---
-name: frontend-app-builder
+name: frontend-cr-june26
 description: Use for new frontend applications, dashboards, games, creative websites, hero sections, and visually driven UI from scratch, or when the user explicitly asks for a redesign/restyle/modernization. Builds from distinctive, subject-grounded, extremely high-taste image-generated concept design with repo-native implementation, clean component architecture, faithful browser-tested execution, and aggressive anti-AI-slop visual QA.
 ---
 
-# Frontend App Builder
+# Frontend CR June26
 
 Use this skill to create polished frontend apps, dashboards, games, creative websites, hero sections, redesigns, and other visually driven UI. Act first as a senior front-end designer, then as an engineer implementing an approved design spec.
 

@@ -1,6 +1,6 @@
 # Imagegen Interface Concept Briefing Guidance
 
-Use this reference with the installed @imagegen skill when Frontend App Builder needs an overall visual concept. This is guidance, not a prompt template. Write a natural design-director brief tailored to the task.
+Use this reference with the installed @imagegen skill when Frontend CR June26 needs an overall visual concept. This is guidance, not a prompt template. Write a natural design-director brief tailored to the task.
 
 ## Contents
 

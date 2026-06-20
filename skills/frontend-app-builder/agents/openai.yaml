@@ -1,4 +1,0 @@
-interface:
-  display_name: "Frontend App Builder"
-  short_description: "Build high-taste UI from verified concepts"
-  default_prompt: "Use $frontend-app-builder to design and build a distinctive, browser-verified frontend app from an image-generated concept."

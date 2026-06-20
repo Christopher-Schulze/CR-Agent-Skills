@@ -1,4 +1,0 @@
-interface:
-  display_name: "Frontend Design Custom Delta"
-  short_description: "Custom frontend design rules to merge into a canonical frontend app builder skill."
-  default_prompt: "Use the frontend design custom delta as source material for a canonical frontend app builder skill."

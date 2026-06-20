@@ -635,6 +635,7 @@ if __name__ == "__main__":
 **Transport selection:**
 - **stdio**: Command-line tools, local integrations, subprocess execution
 - **Streamable HTTP**: Web services, remote access, multiple clients
+- For Codex and CLI coding agents, stdio is often the fastest local development path. For shared or remote deployments, Streamable HTTP is the stronger default because it supports normal HTTP deployment and multiple clients.
 
 ---
 

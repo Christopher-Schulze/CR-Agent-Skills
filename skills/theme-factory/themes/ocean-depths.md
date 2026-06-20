@@ -29,3 +29,11 @@ Corporate presentations, financial reports, professional consulting decks, trust
 ## Application Notes
 
 Use this theme for trust, depth, and professional calm. Avoid overusing dark backgrounds on dense content; alternate navy impact moments with light readable sections.
+
+## Premium Execution
+
+- **Signature Move**: Use Deep Navy as a confident cover or sectional anchor with Teal as a precise navigational signal.
+- **Depth Rule**: Alternate immersive navy moments with Cream content pages; use Seafoam as relief, not decoration.
+- **Typography Rule**: Keep type crisp and consultant-grade; avoid friendly nautical styling unless explicitly requested.
+- **Data/Charts**: Teal carries the lead series, Seafoam supports comparisons, Deep Navy labels and frames, Cream holds dense content.
+- **Avoid**: Anchor/wave icons, over-dark dashboards, teal-on-seafoam text, and generic corporate blue sameness.

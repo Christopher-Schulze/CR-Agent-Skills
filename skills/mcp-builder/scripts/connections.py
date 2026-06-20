@@ -55,19 +55,26 @@ class MCPConnection(ABC):
     async def list_tools(self) -> list[dict[str, Any]]:
         """Retrieve available tools from the MCP server."""
         response = await self.session.list_tools()
-        return [
-            {
+        tools = []
+        for tool in response.tools:
+            tool_data = {
                 "name": tool.name,
-                "description": tool.description,
-                "input_schema": tool.inputSchema,
+                "description": tool.description or "",
+                "input_schema": tool.inputSchema or {"type": "object", "properties": {}},
             }
-            for tool in response.tools
-        ]
+            output_schema = getattr(tool, "outputSchema", None)
+            if output_schema:
+                tool_data["output_schema"] = output_schema
+            annotations = getattr(tool, "annotations", None)
+            if annotations:
+                tool_data["annotations"] = annotations
+            tools.append(tool_data)
+        return tools
 
     async def call_tool(self, tool_name: str, arguments: dict[str, Any]) -> Any:
         """Call a tool on the MCP server with provided arguments."""
         result = await self.session.call_tool(tool_name, arguments=arguments)
-        return result.content
+        return result
 
 
 class MCPConnectionStdio(MCPConnection):

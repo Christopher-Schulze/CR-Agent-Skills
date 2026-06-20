@@ -1,7 +1,6 @@
 ---
 name: algorithmic-art
 description: Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.
-license: Complete terms in LICENSE.txt
 ---
 
 Algorithmic philosophies are computational aesthetic movements that are then expressed through code. Output .md files (philosophy), .html files (interactive viewer), and .js files (generative algorithms).
@@ -9,6 +8,17 @@ Algorithmic philosophies are computational aesthetic movements that are then exp
 This happens in two steps:
 1. Algorithmic Philosophy Creation (.md file)
 2. Express by creating p5.js generative art (.html + .js files)
+
+## BRUTAL PREMIUM GENERATIVE STANDARD
+
+Default to gallery-grade computational art: coherent visual thesis, reproducible seeded output, interactive exploration, tuned parameters, disciplined color, strong composition, and real performance. The result must feel like a designed generative system, not a random demo with sliders.
+
+Every final artifact needs:
+- A subject-specific algorithmic thesis that could not be reused for another prompt by swapping labels.
+- One clear generative signature: a force model, growth rule, field behavior, recursive logic, mark system, or temporal evolution.
+- Parameter discipline: every exposed control changes a meaningful quality of the system, with ranges that produce good output instead of breaking the piece.
+- Premium visual craft: palette, density, margins, stroke weights, alpha, rhythm, and negative space are deliberately tuned.
+- Reproducibility and performance: the same seed produces the same output, interaction remains responsive, and expensive loops are bounded.
 
 First, undertake this task:
 
@@ -46,7 +56,7 @@ To capture the ALGORITHMIC essence, express how this philosophy manifests throug
 
 **CRITICAL GUIDELINES:**
 - **Avoid redundancy**: Each algorithmic aspect should be mentioned once. Avoid repeating concepts about noise theory, particle dynamics, or mathematical principles unless adding new depth.
-- **Emphasize craftsmanship REPEATEDLY**: The philosophy MUST stress multiple times that the final algorithm should appear as though it took countless hours to develop, was refined with care, and comes from someone at the absolute top of their field. This framing is essential - repeat phrases like "meticulously crafted algorithm," "the product of deep computational expertise," "painstaking optimization," "master-level implementation."
+- **Make craftsmanship operational**: State the craft bar once, then express it through concrete expectations for the algorithm, parameter ranges, palette, composition, performance, reproducibility, and rendered inspection. Do not pad the philosophy with repeated praise words.
 - **Leave creative space**: Be specific about the algorithmic direction, but concise enough that the implementing agent has room to make interpretive implementation choices at an extremely high level of craftsmanship.
 
 The philosophy must guide the next version to express ideas ALGORITHMICALLY, not through static images. Beauty lives in the process, not the final frame.
@@ -81,7 +91,7 @@ Algorithmic expression: Randomized circle packing or Voronoi tessellation. Start
 - **PARAMETRIC EXPRESSION**: Ideas communicate through mathematical relationships, forces, behaviors - not static composition
 - **ARTISTIC FREEDOM**: The implementing agent interprets the philosophy algorithmically - provide creative implementation room
 - **PURE GENERATIVE ART**: This is about making LIVING ALGORITHMS, not static images with randomness
-- **EXPERT CRAFTSMANSHIP**: Repeatedly emphasize the final algorithm must feel meticulously crafted, refined through countless iterations, the product of deep expertise by someone at the absolute top of their field in computational aesthetics
+- **EXPERT CRAFTSMANSHIP**: The final algorithm must feel meticulously tuned through composition, palette, parameter design, seeded variation, smooth interaction, and rendered output quality
 
 **The algorithmic philosophy should be 4-6 paragraphs long.** Fill it with poetic computational philosophy that brings together the intended vision. Avoid repeating the same points. Output this algorithmic philosophy as a .md file.
 
@@ -102,6 +112,8 @@ This is **VERY IMPORTANT**: The reference must be so refined that it enhances th
 
 With the philosophy AND conceptual framework established, express it through code. Pause to gather thoughts before proceeding. Use only the algorithmic philosophy created and the instructions below.
 
+Before coding, create an internal implementation contract: canvas size, static vs. animated behavior, seed strategy, core algorithm, exposed parameters, safe parameter ranges, color system, performance budget, export behavior, and the visual failure modes to avoid.
+
 ### ⚠️ STEP 0: READ THE TEMPLATE FIRST ⚠️
 
 **CRITICAL: BEFORE writing any HTML:**
@@ -113,16 +125,17 @@ With the philosophy AND conceptual framework established, express it through cod
 5. **Replace only the VARIABLE sections** marked in the file's comments (algorithm, parameters, UI controls for parameters)
 
 **Avoid:**
-- ❌ Creating HTML from scratch
-- ❌ Inventing custom styling or color schemes
-- ❌ Using system fonts or dark themes
-- ❌ Changing the sidebar structure
+- Creating HTML from scratch
+- Inventing custom viewer styling or color schemes
+- Using system fonts or dark themes for the viewer UI
+- Changing the sidebar structure
 
 **Follow these practices:**
-- ✅ Copy the template's exact HTML structure
-- ✅ Keep the neutral viewer styling (Poppins/Lora fonts, light colors, gradient backdrop)
-- ✅ Maintain the sidebar layout (Seed → Parameters → Colors? → Actions)
-- ✅ Replace only the p5.js algorithm and parameter controls
+- Copy the template's exact HTML structure
+- Keep the neutral viewer styling (Poppins/Lora fonts, light colors, gradient backdrop)
+- Maintain the sidebar layout (Seed -> Parameters -> Colors? -> Actions)
+- Replace only the p5.js algorithm and parameter controls
+- Do not introduce hover zoom, hover grow, or layout-shifting controls in the viewer UI
 
 The template is the foundation. Build on it, don't rebuild it.
 
@@ -208,6 +221,18 @@ function draw() {
 - **Performance**: Smooth execution, optimized for real-time if animated
 - **Reproducibility**: Same seed ALWAYS produces identical output
 
+### PREMIUM GENERATIVE QA GATES
+
+Before delivery, repair the artifact if:
+- It looks like a stock p5.js tutorial, random particle demo, screensaver, or copied pattern menu.
+- The strongest output frame lacks a subject-specific algorithmic idea.
+- Most parameter values produce weak, noisy, blank, slow, or visually indistinguishable output.
+- The palette feels arbitrary, low-contrast, muddy, or disconnected from the concept.
+- The viewer controls do not work, do not update displayed values, or expose parameters that do not visibly matter.
+- Animation is janky, unbounded, or visually chaotic without intent.
+- Seed navigation does not reproduce the same composition for the same seed.
+- Exported PNG output is blurry, cropped incorrectly, or missing the intended final frame.
+
 ### OUTPUT FORMAT
 
 Output:
@@ -239,6 +264,7 @@ The `templates/viewer.html` file is the foundation. It contains the exact struct
 - Actions section in sidebar:
   - Regenerate button
   - Reset button
+  - Download PNG button
 
 **VARIABLE (customize for each artwork):**
 - The entire p5.js algorithm (setup/draw/classes)

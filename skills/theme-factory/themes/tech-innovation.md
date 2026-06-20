@@ -29,3 +29,11 @@ Tech startups, software launches, innovation showcases, AI/ML presentations, dig
 ## Application Notes
 
 Use this theme for sharp, modern, technical artifacts. Avoid generic neon SaaS styling by keeping cyan rare, typography disciplined, and layouts clean.
+
+## Premium Execution
+
+- **Signature Move**: Use Electric Blue as the primary signal and Neon Cyan as a rare precision highlight, like a trace, cursor, or status pulse.
+- **Depth Rule**: Dark Gray should feel like engineered graphite, not black void; add white/light surfaces for dense explanatory content.
+- **Typography Rule**: Use tight technical hierarchy, clear labels, and precise numeric treatments; avoid exaggerated futuristic fonts.
+- **Data/Charts**: Electric Blue leads, Cyan flags critical deltas, neutral grays carry baselines, and White keeps labels legible.
+- **Avoid**: Generic neon gradients, hacker-movie green, glassmorphism clutter, and cyan used as normal paragraph text.

@@ -9,6 +9,7 @@ export PWCLI="$PLAYWRIGHT_SKILL_DIR/scripts/playwright_cli.sh"
 ```
 
 User-scoped skills install under `$HOME/.agents/skills`.
+For the newest command list, run `pwcli --help` or `npx playwright --help`; prefer the wrapper for agent workflows and the native Playwright test CLI only when the user asks for test files.
 
 Optional convenience alias:
 
@@ -76,6 +77,8 @@ pwcli screenshot
 pwcli screenshot e5
 pwcli pdf
 ```
+
+Use screenshots for visual proof, PDFs for printable page capture, and traces when debugging timing, navigation, console, or network behavior.
 
 ## Tabs
 

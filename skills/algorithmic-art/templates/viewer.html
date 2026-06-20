@@ -171,12 +171,12 @@
             background: var(--viewer-orange);
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
         }
 
         .slider-container input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
             background: #c86641;
+            box-shadow: 0 0 0 4px rgba(217, 119, 87, 0.14);
         }
 
         .slider-container input[type="range"]::-moz-range-thumb {
@@ -186,7 +186,12 @@
             border-radius: 50%;
             border: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb:hover {
+            background: #c86641;
+            box-shadow: 0 0 0 4px rgba(217, 119, 87, 0.14);
         }
 
         .value-display {
@@ -241,17 +246,17 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
             width: 100%;
         }
 
         .button:hover {
             background: #c86641;
-            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(20, 20, 19, 0.12);
         }
 
         .button:active {
-            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(20, 20, 19, 0.10);
         }
 
         .button.secondary {
@@ -340,6 +345,7 @@
             <div class="control-section">
                 <h3>Seed</h3>
                 <input type="number" id="seed-input" class="seed-input" value="12345" onchange="updateSeed()">
+                <button class="button tertiary regen-button" onclick="updateSeed()">Go to Seed</button>
                 <div class="seed-controls">
                     <button class="button secondary" onclick="previousSeed()">← Prev</button>
                     <button class="button secondary" onclick="nextSeed()">Next →</button>
@@ -424,8 +430,10 @@
             <div class="control-section">
                 <h3>Actions</h3>
                 <div class="button-row">
+                    <button class="button secondary" onclick="regenerateArtwork()">Regenerate</button>
                     <button class="button" onclick="resetParameters()">Reset</button>
                 </div>
+                <button class="button tertiary regen-button" onclick="downloadArtwork()">Download PNG</button>
             </div>
         </div>
 
@@ -497,11 +505,11 @@
         }
 
         function generateFlowField() {
-          // fill this in
+          // Replace with the selected algorithm's field generation.
         }
 
         function draw() {
-            // fill this in
+            // Replace with the selected algorithm's draw loop.
         }
 
         // ═══════════════════════════════════════════════════════════════════════
@@ -510,9 +518,9 @@
 
         class Particle {
             constructor() {
-                // fill this in
+                // Replace with the selected algorithm's particle state.
             }
-            // fill this in
+            // Add update/display methods when the algorithm needs entities.
         }
 
         // ═══════════════════════════════════════════════════════════════════════
@@ -520,11 +528,25 @@
         // ═══════════════════════════════════════════════════════════════════════
 
         function updateParam(paramName, value) {
-            // fill this in
+            const numericValue = Number(value);
+            params[paramName] = Number.isNaN(numericValue) ? value : numericValue;
+            const display = document.getElementById(`${paramName}-value`);
+            if (display) {
+                display.textContent = value;
+            }
+            initializeSystem();
         }
 
         function updateColor(colorId, value) {
-            // fill this in
+            const colorIndex = Number(colorId.replace('color', '')) - 1;
+            if (colorIndex >= 0) {
+                params.colorPalette[colorIndex] = value;
+            }
+            const display = document.getElementById(`${colorId}-value`);
+            if (display) {
+                display.textContent = value;
+            }
+            initializeSystem();
         }
 
         // ═══════════════════════════════════════════════════════════════════════
@@ -588,6 +610,14 @@
             
             updateSeedDisplay();
             initializeSystem();
+        }
+
+        function regenerateArtwork() {
+            initializeSystem();
+        }
+
+        function downloadArtwork() {
+            saveCanvas('generative-art-' + params.seed, 'png');
         }
 
         // Initialize UI on load

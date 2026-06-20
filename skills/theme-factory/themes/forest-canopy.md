@@ -29,3 +29,11 @@ Environmental presentations, sustainability reports, outdoor brands, wellness co
 ## Application Notes
 
 Use this theme for grounded, trustworthy, nature-adjacent artifacts. Avoid muddy midtone stacking; pair dark green with ivory generously.
+
+## Premium Execution
+
+- **Signature Move**: Use Forest Green as deep editorial ink with sparse Olive markers and quiet Sage metadata.
+- **Depth Rule**: Separate dark cover moments from light content pages; never stack Sage on Olive without a dark or Ivory anchor.
+- **Typography Rule**: Let serif headers feel institutional and natural; keep body text crisp to avoid rustic mush.
+- **Data/Charts**: Use Forest Green for the leading series, Olive for growth/progress, Sage for context, and Ivory for readable chart fields.
+- **Avoid**: Muddy midtones, recycled-paper cliches, leafy decorations, and green backgrounds behind dense body copy.

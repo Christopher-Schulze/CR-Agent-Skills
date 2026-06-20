@@ -29,3 +29,11 @@ Tech presentations, architecture portfolios, design showcases, modern business p
 ## Application Notes
 
 Use this theme when content, grid, whitespace, and typography should carry the design. Avoid bland default grayscale by sharpening hierarchy, scale contrast, and alignment.
+
+## Premium Execution
+
+- **Signature Move**: Use extreme grid discipline, strong type scale, and one custom accent only when the artifact needs a focal signal.
+- **Depth Rule**: Prefer white space, hairline dividers, and exact alignment over cards and shadows.
+- **Typography Rule**: Make hierarchy unmistakable through size, weight, spacing, and case; grayscale alone is not a design.
+- **Data/Charts**: Use Charcoal for labels, Slate Gray for secondary context, and introduce one restrained accent for the key series if needed.
+- **Avoid**: Default grayscale office decks, flat tables without hierarchy, center-aligned everything, and weak contrast.

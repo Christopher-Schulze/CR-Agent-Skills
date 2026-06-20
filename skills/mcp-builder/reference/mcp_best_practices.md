@@ -59,6 +59,8 @@ The name should be general, descriptive of the service being integrated, easy to
 - Descriptions must precisely match actual functionality
 - Provide tool annotations (readOnlyHint, destructiveHint, idempotentHint, openWorldHint)
 - Keep tool operations focused and atomic
+- Keep the initially exposed tool surface manageable. If a service has many endpoints, prefer discovery/search tools, pagination, and grouped workflow tools over exposing dozens of near-duplicate functions at once.
+- Combine operations that agents always need in sequence, but do not hide meaningful user approval boundaries or destructive effects.
 
 ---
 
@@ -71,6 +73,7 @@ All tools that return data should support multiple formats:
 - Include all available fields and metadata
 - Consistent field names and types
 - Use for programmatic processing
+- When the SDK supports it, return structured output as structured content as well as readable text so clients can parse results without re-reading prose.
 
 ### Markdown Format (`response_format="markdown"`, typically default)
 - Human-readable formatted text
@@ -237,6 +240,7 @@ Comprehensive testing should cover:
 - **Security testing**: Validate auth, input sanitization, rate limiting
 - **Performance testing**: Check behavior under load, timeouts
 - **Error handling**: Ensure proper error reporting and cleanup
+- **Agent usability testing**: Check whether an agent can solve realistic read-only tasks using only the server's tool names, descriptions, schemas, outputs, and errors.
 
 ---
 

@@ -29,3 +29,11 @@ Entertainment industry, gaming presentations, nightlife venues, luxury brands, c
 ## Application Notes
 
 Use this theme for dramatic, premium, night-mode artifacts. Avoid excessive glow effects; the premium feel comes from contrast discipline and precise spacing.
+
+## Premium Execution
+
+- **Signature Move**: Build a cinematic dark field with one precise Lavender or Cosmic Blue signal, like a light leak or navigation trace.
+- **Depth Rule**: Use Deep Purple for atmosphere, Silver for crisp text, and very controlled glow or blur only around focal accents.
+- **Typography Rule**: Titles can be large and cinematic, but labels and body text must be sharp with generous spacing.
+- **Data/Charts**: Silver labels, Cosmic Blue primary series, Lavender secondary highlights; avoid rainbow cosmic palettes.
+- **Avoid**: Space wallpaper, neon overuse, unreadable low-contrast purple text, and glow effects that blur information.

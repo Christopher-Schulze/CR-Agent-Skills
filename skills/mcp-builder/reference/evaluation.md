@@ -485,7 +485,7 @@ positional arguments:
 optional arguments:
   -h, --help            Show help message
   -t, --transport       Transport type: stdio, sse, or http (default: stdio)
-  -m, --model           OpenAI model to use (default: gpt-5.5)
+  -m, --model           OpenAI model to use (default: OPENAI_EVAL_MODEL if set; otherwise required)
   -o, --output          Output file for report (default: print to stdout)
 
 stdio options:
@@ -600,3 +600,4 @@ If tasks are timing out:
 - Check if tools are returning too much data
 - Verify pagination is working correctly
 - Consider simplifying complex questions
+- Use `--max-tool-output-chars` to cap extremely large tool outputs, then improve the MCP server with filters, cursors, field selection, or narrower workflow tools.

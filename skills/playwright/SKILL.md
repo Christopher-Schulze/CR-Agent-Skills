@@ -9,6 +9,13 @@ description: "Use when the task requires automating a real browser from the term
 Drive a real browser from the terminal using `playwright-cli`. Prefer the bundled wrapper script so the CLI works even when it is not globally installed.
 Treat this skill as CLI-first automation. Do not pivot to `@playwright/test` unless the user explicitly asks for test files.
 
+## Codex Routing and Portability
+
+- In Codex, use the in-app Browser plugin first when it already covers a local visual QA/debugging task with lower friction.
+- Use this skill when terminal browser automation is the better fit: repeatable CLI flows, remote URLs, cross-browser/session work, artifact capture, snapshots, screenshots, PDFs, traces, or data extraction.
+- In other agent harnesses, use the closest native terminal browser automation or Playwright CLI capability. Keep the same loop: open, snapshot, act on stable refs, resnapshot, capture artifacts, verify.
+- Do not dilute the Codex workflow for portability. Translate unavailable tooling to the native equivalent and state the substitution briefly.
+
 ## Prerequisite check (required)
 
 Before proposing commands, check whether `npx` is available (the wrapper depends on it):
@@ -67,6 +74,7 @@ playwright-cli --help
 3. Interact using refs from the latest snapshot.
 4. Re-snapshot after navigation or significant DOM changes.
 5. Capture artifacts (screenshot, pdf, traces) when useful.
+6. Verify the artifact or final page state before reporting success.
 
 Minimal loop:
 
@@ -145,3 +153,4 @@ Open only what you need:
 - Use `--headed` when a visual check will help.
 - When capturing artifacts in this repo, use `output/playwright/` and avoid introducing new top-level artifact folders.
 - Default to CLI commands and workflows, not Playwright test specs.
+- If the task changes product state or submits data, pause for user confirmation unless the user already authorized that action.

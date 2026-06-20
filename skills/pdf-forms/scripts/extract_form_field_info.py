@@ -4,15 +4,18 @@ import sys
 from pypdf import PdfReader
 
 
+def resolve_pdf_object(obj):
+    return obj.get_object() if hasattr(obj, "get_object") else obj
 
 
 def get_full_annotation_field_id(annotation):
+    annotation = resolve_pdf_object(annotation)
     components = []
     while annotation:
         field_name = annotation.get('/T')
         if field_name:
             components.append(field_name)
-        annotation = annotation.get('/Parent')
+        annotation = resolve_pdf_object(annotation.get('/Parent'))
     return ".".join(reversed(components)) if components else None
 
 
@@ -63,6 +66,7 @@ def get_field_info(reader: PdfReader):
     for page_index, page in enumerate(reader.pages):
         annotations = page.get('/Annots', [])
         for ann in annotations:
+            ann = resolve_pdf_object(ann)
             field_id = get_full_annotation_field_id(ann)
             if field_id in field_info_by_id:
                 field_info_by_id[field_id]["page"] = page_index + 1

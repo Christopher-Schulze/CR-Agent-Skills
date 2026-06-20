@@ -29,3 +29,11 @@ Garden centers, food presentations, farm-to-table content, botanical brands, nat
 ## Application Notes
 
 Use this theme for organic, lively, human-scale artifacts. Keep Marigold restrained so the palette feels fresh rather than loud.
+
+## Premium Execution
+
+- **Signature Move**: Pair botanical whitespace with tiny marigold markers, pressed-flower section labels, or editorial terracotta rules.
+- **Depth Rule**: Use Cream as paper, Fern Green as ink, and Terracotta for tactile section rhythm; avoid filling large areas with bright accents.
+- **Typography Rule**: Headers can feel editorial and natural; body copy must stay clean and highly readable.
+- **Data/Charts**: Use Fern Green for primary series, Terracotta for comparison, Marigold only for one critical highlight, and Cream for plot fields.
+- **Avoid**: Farmer-market clutter, all-green monotony, decorative leaf spam, and low-contrast Marigold text.

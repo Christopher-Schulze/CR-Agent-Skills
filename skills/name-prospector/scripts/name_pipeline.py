@@ -48,6 +48,16 @@ BAD_FRAGMENTS = {
     "terror", "xxx",
 }
 
+WEAK_PREFIXES = {
+    "air", "alto", "bright", "clear", "fresh", "get", "go", "my", "neo",
+    "next", "open", "prime", "quick", "smart", "super", "try",
+}
+
+WEAK_SUFFIXES = {
+    "able", "app", "bot", "box", "ful", "hub", "ify", "io", "kit", "ly",
+    "mate", "ster", "tool", "works",
+}
+
 STOPWORDS = {
     "about", "after", "again", "also", "and", "app", "are", "assistant", "based",
     "best", "build", "business", "can", "company", "for", "from", "get", "has",
@@ -79,6 +89,11 @@ def stable_rng(seed_text: str) -> random.Random:
     return random.Random(int(digest[:16], 16))
 
 
+def stable_rank(value: str) -> int:
+    digest = hashlib.sha256(value.encode("utf-8")).hexdigest()
+    return int(digest[:12], 16)
+
+
 def split_keywords(values: list[str]) -> list[str]:
     words: list[str] = []
     for value in values:
@@ -107,7 +122,15 @@ def score_slug(slug: str, keywords: list[str]) -> int:
     if slug in keywords:
         score -= 25
     if any(keyword in slug for keyword in keywords):
-        score += 10
+        score += 8
+    if any(slug.startswith(prefix) and len(slug) > len(prefix) + 3 for prefix in WEAK_PREFIXES):
+        score -= 12
+    if any(slug.endswith(suffix) and len(slug) > len(suffix) + 3 for suffix in WEAK_SUFFIXES):
+        score -= 14
+    if re.search(r"(ly|ify|ster)$", slug):
+        score -= 12
+    if re.search(r"(.)\1", slug):
+        score -= 3
 
     vowel_count = sum(1 for character in slug if character in "aeiou")
     vowel_ratio = vowel_count / max(length, 1)
@@ -127,6 +150,16 @@ def add_candidate(rows: dict[str, Candidate], slug: str, style: str, keywords: l
         return
 
     score = score_slug(clean_slug, keywords)
+    if style in {"keyword_suffix", "prefix_keyword"}:
+        score -= 2
+    elif style == "compound":
+        score += 4
+    elif style == "coined":
+        score -= 8
+    elif style == "coined_suffix":
+        score -= 8
+    elif style == "prefix_coined":
+        score -= 12
     if score < 35:
         return
 
@@ -161,7 +194,7 @@ def generate_candidates(brief: str, keywords: list[str], count: int) -> list[Can
         add_candidate(rows, rng.choice(PREFIXES) + "".join(pieces[:2]), "prefix_coined", keywords)
         add_candidate(rows, "".join(pieces[-2:]) + rng.choice(SUFFIXES), "coined_suffix", keywords)
 
-    return sorted(rows.values(), key=lambda item: (-item.score, len(item.slug), item.slug))[:count]
+    return sorted(rows.values(), key=lambda item: (-item.score, len(item.slug), stable_rank(item.slug)))[:count]
 
 
 def rdap_url(domain: str) -> str:

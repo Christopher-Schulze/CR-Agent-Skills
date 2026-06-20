@@ -46,7 +46,7 @@ def fill_pdf_fields(input_pdf_path: str, fields_json_path: str, output_pdf_path:
     for page, field_values in fields_by_page.items():
         writer.update_page_form_field_values(writer.pages[page - 1], field_values, auto_regenerate=False)
 
-    writer.set_need_appearances_writer(True)
+    writer.set_need_appearances_writer(False)
     
     with open(output_pdf_path, "wb") as f:
         writer.write(f)

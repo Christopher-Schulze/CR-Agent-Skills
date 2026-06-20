@@ -5,7 +5,7 @@ description: "Use only for narrow PDF form edge cases where the user needs to de
 
 # PDF Forms
 
-Use this skill only when the task is specifically about PDF forms and field placement. If the user asks for ordinary PDF work, use the primary PDF capability instead.
+Use this skill only when the task is specifically about PDF forms and field placement. If the user asks for ordinary PDF work, use the primary PDF capability instead. In Codex, that is normally `pdf:pdf`; in other harnesses, use the native PDF capability and reserve this skill for the form-specific segment.
 
 This is an edgecase supplement, not a replacement for normal PDF tooling.
 
@@ -27,7 +27,7 @@ This is an edgecase supplement, not a replacement for normal PDF tooling.
 - General OCR or scanned-document extraction.
 - Visual layout review of normal PDFs.
 
-For those tasks, use the primary PDF capability, such as `pdf:pdf` in Codex.
+For those tasks, use the primary PDF capability.
 
 ## Workflow
 
@@ -38,14 +38,16 @@ For those tasks, use the primary PDF capability, such as `pdf:pdf` in Codex.
    ```
 3. If the file has fillable fields, follow the fillable-field workflow in `forms.md`.
 4. If the file does not have fillable fields, follow the non-fillable annotation workflow in `forms.md`.
-5. Render and visually inspect the filled output before delivery. If text placement, checkbox marks, or field appearances are off, fix coordinates or values and rerender before final delivery.
+5. Render and visually inspect the filled output before delivery. If text placement, checkbox marks, selected values, or field appearances are off, fix coordinates or values and rerender before final delivery.
 
 ## Trigger Discipline
 
 - Use only when the requested outcome depends on form fields, field names, checkbox/radio states, or precise form-coordinate placement.
+- Strong positive triggers: "fill this PDF form", "map the fields", "which field id is this", "checkbox/radio value", "AcroForm", "XFA", "field rectangle", "place text on this blank".
 - Do not trigger just because a file is a PDF.
 - Do not trigger for scanned-PDF OCR unless the user specifically wants to fill or map a form after OCR/visual inspection.
 - If both normal PDF work and form filling are required, use the primary PDF capability for normal PDF steps and this skill only for the form-specific part.
+- If the task can be completed by reading, rendering, annotating, extracting, or editing a normal PDF without field semantics or field-coordinate placement, do not use this skill.
 
 ## Files
 

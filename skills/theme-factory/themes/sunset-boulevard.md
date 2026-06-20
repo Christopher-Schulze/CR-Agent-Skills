@@ -29,3 +29,11 @@ Creative pitches, marketing presentations, lifestyle brands, event promotions, i
 ## Application Notes
 
 Use this theme for energetic, expressive artifacts. Avoid stacking all warm colors at once; give the palette a dark anchor and clear hierarchy.
+
+## Premium Execution
+
+- **Signature Move**: Use Deep Purple as the editorial anchor with a single Burnt Orange focal slash, marker, or title accent.
+- **Depth Rule**: Warm Sand can carry background energy, but dense content needs quiet fields and strong dark text.
+- **Typography Rule**: Serif headers should feel cinematic/editorial; body text must stay restrained so the palette does not become festival clutter.
+- **Data/Charts**: Burnt Orange for the main story, Coral for secondary series, Deep Purple for labels, Warm Sand for context bands.
+- **Avoid**: Full-sunset gradients, stacked warm accents, lifestyle-template cheesiness, and orange body text.

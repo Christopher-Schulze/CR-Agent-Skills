@@ -29,3 +29,11 @@ Healthcare presentations, technology solutions, winter sports, clean tech, pharm
 ## Application Notes
 
 Use this theme for precise, calm, evidence-driven artifacts. Avoid making the whole artifact pale blue; preserve enough white and dark text contrast for a crisp premium feel.
+
+## Premium Execution
+
+- **Signature Move**: Use hairline ice-blue sectional bands, precise numeric callouts, and small steel-blue anchors to create a clinical-luxury system.
+- **Depth Rule**: Keep surfaces nearly white; use very soft blue-tinted shadows or thin borders instead of heavy cards.
+- **Typography Rule**: Let spacing, alignment, and restrained weight changes create hierarchy; avoid oversized friendly SaaS headings.
+- **Data/Charts**: Use Steel Blue as the primary series, Ice Blue as the quiet comparison fill, and a darkened navy-gray for labels.
+- **Avoid**: Pale-on-pale text, frosty gradients everywhere, generic healthcare clip-art, and metallic silver used as body text.

@@ -4,9 +4,12 @@ This script evaluates MCP servers by running test questions against them with th
 OpenAI Responses API and MCP tools.
 """
 
+from __future__ import annotations
+
 import argparse
 import asyncio
 import json
+import os
 import re
 import sys
 import time
@@ -15,9 +18,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
-from openai import OpenAI
-
-from connections import create_connection
+DEFAULT_MAX_TOOL_OUTPUT_CHARS = 60000
+DEFAULT_OPENAI_MODEL = os.environ.get("OPENAI_EVAL_MODEL", "")
 
 EVALUATION_PROMPT = """You are an AI assistant with access to tools.
 
@@ -105,15 +107,31 @@ def tool_result_to_string(tool_result: Any) -> str:
         return str(tool_result)
 
 
+def truncate_tool_output(text: str, max_chars: int) -> str:
+    """Keep tool output within a bounded context budget."""
+    if max_chars <= 0 or len(text) <= max_chars:
+        return text
+    return (
+        text[:max_chars]
+        + f"\n\n[TRUNCATED: tool output exceeded {max_chars} characters. "
+        + "Use filters, pagination, or narrower follow-up calls.]"
+    )
+
+
 def mcp_tool_to_openai_tool(tool: dict[str, Any]) -> dict[str, Any]:
     """Convert an MCP tool description into an OpenAI function tool."""
     parameters = tool.get("input_schema") or {"type": "object", "properties": {}}
     if not isinstance(parameters, dict) or parameters.get("type") != "object":
         parameters = {"type": "object", "properties": {}, "additionalProperties": False}
+    description = tool.get("description") or f"Call MCP tool {tool['name']}"
+    if tool.get("annotations"):
+        description += f"\nBehavior hints: {json.dumps(to_jsonable(tool['annotations']), ensure_ascii=False, default=str)}"
+    if tool.get("output_schema"):
+        description += "\nReturns structured output; prefer exact fields from the tool result over prose inference."
     return {
         "type": "function",
         "name": tool["name"],
-        "description": tool.get("description") or f"Call MCP tool {tool['name']}",
+        "description": description,
         "parameters": parameters,
         "strict": False,
     }
@@ -143,6 +161,7 @@ async def agent_loop(
     tools: list[dict[str, Any]],
     connection: Any,
     max_tool_steps: int,
+    max_tool_output_chars: int,
 ) -> tuple[str, dict[str, Any]]:
     """Run the agent loop with MCP tools."""
     input_messages: list[Any] = [{"role": "user", "content": question}]
@@ -163,7 +182,7 @@ async def agent_loop(
         if not function_calls:
             return response_text(response), tool_metrics
 
-        input_messages.extend(response.output)
+        input_messages.extend(getattr(response, "output", []) or [])
         for tool_call in function_calls:
             tool_name = tool_call.name
             try:
@@ -180,7 +199,10 @@ async def agent_loop(
             tool_start_ts = time.time()
             try:
                 tool_result = await connection.call_tool(tool_name, tool_input)
-                tool_response = tool_result_to_string(tool_result)
+                tool_response = truncate_tool_output(
+                    tool_result_to_string(tool_result),
+                    max_tool_output_chars,
+                )
             except Exception as e:
                 tool_response = f"Error executing tool {tool_name}: {str(e)}\n"
                 tool_response += traceback.format_exc()
@@ -208,12 +230,21 @@ async def evaluate_single_task(
     connection: Any,
     task_index: int,
     max_tool_steps: int,
+    max_tool_output_chars: int,
 ) -> dict[str, Any]:
     """Evaluate a single QA pair with the given tools."""
     start_time = time.time()
 
     print(f"Task {task_index + 1}: Running task with question: {qa_pair['question']}")
-    response, tool_metrics = await agent_loop(client, model, qa_pair["question"], tools, connection, max_tool_steps)
+    response, tool_metrics = await agent_loop(
+        client,
+        model,
+        qa_pair["question"],
+        tools,
+        connection,
+        max_tool_steps,
+        max_tool_output_chars,
+    )
 
     response_value = extract_xml_content(response, "response")
     summary = extract_xml_content(response, "summary")
@@ -270,11 +301,20 @@ TASK_TEMPLATE = """
 async def run_evaluation(
     eval_path: Path,
     connection: Any,
-    model: str = "gpt-5.5",
+    model: str = DEFAULT_OPENAI_MODEL,
     max_tool_steps: int = 12,
+    max_tool_output_chars: int = DEFAULT_MAX_TOOL_OUTPUT_CHARS,
 ) -> str:
     """Run evaluation with MCP server tools."""
+    if not model:
+        raise SystemExit("Pass --model or set OPENAI_EVAL_MODEL to a current OpenAI model available to this account.")
+
     print("Starting MCP evaluation")
+
+    try:
+        from openai import OpenAI
+    except ModuleNotFoundError as e:
+        raise SystemExit("Missing dependency: install with `pip install -r scripts/requirements.txt`.") from e
 
     client = OpenAI()
 
@@ -288,7 +328,16 @@ async def run_evaluation(
     results = []
     for i, qa_pair in enumerate(qa_pairs):
         print(f"Processing task {i + 1}/{len(qa_pairs)}")
-        result = await evaluate_single_task(client, model, qa_pair, tools, connection, i, max_tool_steps)
+        result = await evaluate_single_task(
+            client,
+            model,
+            qa_pair,
+            tools,
+            connection,
+            i,
+            max_tool_steps,
+            max_tool_output_chars,
+        )
         results.append(result)
 
     correct = sum(r["score"] for r in results)
@@ -367,14 +416,15 @@ async def main():
 	  python evaluation.py -t sse -u https://example.com/mcp -H "Authorization: Bearer token" eval.xml
 
 	  # Evaluate an HTTP MCP server with custom model
-	  python evaluation.py -t http -u https://example.com/mcp -m gpt-5.5 eval.xml
+	  python evaluation.py -t http -u https://example.com/mcp -m <model> eval.xml
 	        """,
 	    )
 
     parser.add_argument("eval_file", type=Path, help="Path to evaluation XML file")
-    parser.add_argument("-t", "--transport", choices=["stdio", "sse", "http"], default="stdio", help="Transport type (default: stdio)")
-    parser.add_argument("-m", "--model", default="gpt-5.5", help="OpenAI model to use (default: gpt-5.5)")
+    parser.add_argument("-t", "--transport", choices=["stdio", "sse", "http", "streamable_http", "streamable-http"], default="stdio", help="Transport type (default: stdio)")
+    parser.add_argument("-m", "--model", default=DEFAULT_OPENAI_MODEL, help="OpenAI model to use (default: OPENAI_EVAL_MODEL if set; otherwise required)")
     parser.add_argument("--max-tool-steps", type=int, default=12, help="Maximum model/tool-call loop iterations per task (default: 12)")
+    parser.add_argument("--max-tool-output-chars", type=int, default=DEFAULT_MAX_TOOL_OUTPUT_CHARS, help=f"Maximum characters returned to the model per tool call (default: {DEFAULT_MAX_TOOL_OUTPUT_CHARS})")
 
     stdio_group = parser.add_argument_group("stdio options")
     stdio_group.add_argument("-c", "--command", help="Command to run MCP server (stdio only)")
@@ -397,6 +447,11 @@ async def main():
     env_vars = parse_env_vars(args.env) if args.env else None
 
     try:
+        from connections import create_connection
+    except ModuleNotFoundError as e:
+        raise SystemExit("Missing dependency: install with `pip install -r scripts/requirements.txt`.") from e
+
+    try:
         connection = create_connection(
             transport=args.transport,
             command=args.command,
@@ -413,7 +468,13 @@ async def main():
 
     async with connection:
         print("Connected successfully")
-        report = await run_evaluation(args.eval_file, connection, args.model, args.max_tool_steps)
+        report = await run_evaluation(
+            args.eval_file,
+            connection,
+            args.model,
+            args.max_tool_steps,
+            args.max_tool_output_chars,
+        )
 
         if args.output:
             args.output.write_text(report)

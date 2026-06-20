@@ -52,6 +52,20 @@ pwcli tracing-stop
 pwcli screenshot
 ```
 
+## Visual QA Loop
+
+```bash
+pwcli open http://localhost:3000 --headed
+pwcli resize 1440 1000
+pwcli snapshot
+pwcli screenshot
+pwcli resize 390 844
+pwcli snapshot
+pwcli screenshot
+```
+
+Use this loop when verifying responsive UI, visual regressions, loading states, or hover/focus behavior. If a screenshot reveals a problem, fix the app, reload, and repeat the screenshot instead of reporting build success as visual success.
+
 ## Sessions
 
 Use sessions to isolate work across projects:
@@ -93,3 +107,4 @@ Minimal example:
 - If an element ref fails, run `pwcli snapshot` again and retry.
 - If the page looks wrong, re-open with `--headed` and resize the window.
 - If a flow depends on prior state, use a named `--session`.
+- If command support differs by installed CLI version, run `pwcli --help` and adapt to the installed command set.

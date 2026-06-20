@@ -29,3 +29,11 @@ Fashion presentations, beauty brands, wedding planning, interior design, boutiqu
 ## Application Notes
 
 Use this theme for intimate, refined, tactile artifacts. Avoid low-contrast rose-on-sand text; reserve the deepest color for legibility and editorial polish.
+
+## Premium Execution
+
+- **Signature Move**: Use Deep Burgundy as a fashion-editorial ink, Dusty Rose as atmosphere, and Clay as a tactile accent line.
+- **Depth Rule**: Build layered warmth through large quiet Sand fields, thin borders, and restrained shadows; do not make everything pink.
+- **Typography Rule**: Use confident title scale and generous line spacing so the palette reads luxury, not wedding-template.
+- **Data/Charts**: Deep Burgundy carries labels and primary marks; Clay handles secondary series; Dusty Rose is a soft highlight only.
+- **Avoid**: Rose-on-sand body text, blush gradients, over-rounded boutique cards, and ornamental flourishes without content purpose.

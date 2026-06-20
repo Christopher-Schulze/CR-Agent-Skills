@@ -150,6 +150,19 @@ const UserSearchInputSchema = z.object({
 // Type definition from Zod schema
 type UserSearchInput = z.infer<typeof UserSearchInputSchema>;
 
+interface ApiUser {
+  id: string;
+  name: string;
+  email: string;
+  team?: string;
+  active?: boolean;
+}
+
+interface UserSearchApiResponse {
+  users?: ApiUser[];
+  total?: number;
+}
+
 server.registerTool(
   "example_search_users",
   {
@@ -203,7 +216,7 @@ Error Handling:
     try {
       // Input validation is handled by Zod schema
       // Make API request using validated parameters
-      const data = await makeApiRequest<any>(
+      const data = await makeApiRequest<UserSearchApiResponse>(
         "users/search",
         "GET",
         undefined,
@@ -231,7 +244,7 @@ Error Handling:
         total,
         count: users.length,
         offset: params.offset,
-        users: users.map((user: any) => ({
+        users: users.map((user: ApiUser) => ({
           id: user.id,
           name: user.name,
           email: user.email,
@@ -445,8 +458,8 @@ Extract common functionality into reusable functions:
 async function makeApiRequest<T>(
   endpoint: string,
   method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
-  data?: any,
-  params?: any
+  data?: unknown,
+  params?: Record<string, string | number | boolean | undefined>
 ): Promise<T> {
   try {
     const response = await axios({
@@ -640,8 +653,8 @@ type UserSearchInput = z.infer<typeof UserSearchInputSchema>;
 async function makeApiRequest<T>(
   endpoint: string,
   method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
-  data?: any,
-  params?: any
+  data?: unknown,
+  params?: Record<string, string | number | boolean | undefined>
 ): Promise<T> {
   try {
     const response = await axios({
@@ -851,7 +864,7 @@ app.listen(3000);
 #### stdio (For Local Integrations)
 
 ```typescript
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 
 const transport = new StdioServerTransport();
 await server.connect(transport);

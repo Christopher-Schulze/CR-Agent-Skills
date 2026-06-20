@@ -29,3 +29,11 @@ Restaurant presentations, hospitality brands, fall campaigns, cozy lifestyle con
 ## Application Notes
 
 Use this theme for warm, sensory, inviting artifacts. Keep yellow as an accent, not a flood fill, and use Chocolate Brown to prevent the palette from becoming washed out.
+
+## Premium Execution
+
+- **Signature Move**: Use Mustard Yellow as a narrow sunlit edge, not a background; anchor the layout with Chocolate Brown typography.
+- **Depth Rule**: Layer Warm Beige fields with Terracotta interruptions and subtle brown dividers for a hospitality-grade feel.
+- **Typography Rule**: Strong simple sans typography keeps the warmth premium; avoid playful rounded type unless the brief demands it.
+- **Data/Charts**: Mustard marks the key result, Terracotta handles comparison, Chocolate Brown labels everything, and Beige stays background.
+- **Avoid**: Beige overload, orange-brown monotony, faux-retro diner styling, and yellow text over warm surfaces.

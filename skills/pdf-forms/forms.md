@@ -75,6 +75,8 @@ Then analyze the images to determine the purpose of each form field (make sure t
 `python3 scripts/fill_fillable_fields.py <input pdf> <field_values.json> <output pdf>`
 This script will verify that the field IDs and values you provide are valid; if it prints error messages, correct the appropriate fields and try again.
 
+Render the output and visually verify that text, checkbox states, radio selections, and choice values are visible in the resulting PDF. pypdf form filling should use `auto_regenerate=False` to avoid viewer save prompts; if a viewer still fails to display a value, inspect the field appearance and consider flattening only when the user wants a non-editable final PDF.
+
 # Non-fillable fields
 If the PDF doesn't have fillable form fields, you'll add text annotations. First try to extract coordinates from the PDF structure (more accurate), then fall back to visual estimation if needed.
 
@@ -292,3 +294,5 @@ If text is mispositioned:
 - **Approach A**: Check that you're using PDF coordinates from form_structure.json with `pdf_width`/`pdf_height`
 - **Approach B**: Check that image dimensions match and coordinates are accurate pixels
 - **Hybrid**: Ensure coordinate conversions are correct for visually-estimated fields
+
+Do not deliver until the rendered verification images show every filled value and mark in the intended form blank.

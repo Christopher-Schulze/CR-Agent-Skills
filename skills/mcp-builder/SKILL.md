@@ -1,7 +1,6 @@
 ---
 name: mcp-builder
 description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
-license: Complete terms in LICENSE.txt
 ---
 
 # MCP Server Development Guide
@@ -11,6 +10,13 @@ license: Complete terms in LICENSE.txt
 Create MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. The quality of an MCP server is measured by how well it enables LLMs to accomplish real-world tasks.
 
 ---
+
+## Codex-First, Portable Execution
+
+- In Codex, use the available web/documentation tools to verify current official SDK and service API details before committing to imports, transport constructors, package names, or auth flows.
+- In other harnesses, use the closest native web/docs/search capability for the same official-source check. Do not weaken the implementation for portability; translate the research and verification mechanism, not the engineering bar.
+- Prefer the repo's existing package manager, test runner, lint/build scripts, and deployment conventions. If the repo has no standard, choose the simplest current SDK path that builds cleanly.
+- Build real servers with typed inputs, actionable errors, pagination, narrow tool descriptions, and runnable verification. Do not ship sample-only wrappers, mock servers, or tools that merely mirror raw endpoints without agent-useful behavior.
 
 # Process
 
@@ -72,6 +78,7 @@ Review the service's API documentation to identify key endpoints, authentication
 
 **Tool Selection:**
 Prioritize comprehensive API coverage. List endpoints to implement, starting with the most common operations.
+For very large APIs, keep the initially exposed tool surface small and task-oriented, then add search/filter/pagination tools or deferred discovery so agents do not start every turn with an overloaded tool list.
 
 ---
 

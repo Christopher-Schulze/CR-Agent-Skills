@@ -20,6 +20,7 @@ Copy concrete details from the user request, screenshots, existing app, or plan.
 
 - Scope: complete page, complete app screen, multi-state product surface, dashboard, game screen, or coordinated section/state concepts. For multi-section pages, name the section set and ask for a large readable concept screenshot for each major section.
 - Purpose and audience: what the page/product helps the user do, and who it is for.
+- Context scan: relevant `AGENTS.md`, existing design docs, current UI, screenshots, brand assets, and explicit user preferences when available. Use only current, UI-relevant preferences; user brief and repo truth still win.
 - Exact visible content: headlines, labels, CTAs, section names, nav items, table fields, sample entities, dates, prices, statuses, media requirements, and required copy. After a concept is accepted, this becomes the visible-copy lock.
 - Structure: first viewport composition, downstream section order, sidebars, rails, drawers, grids, tables, charts, media areas, forms, footer/status regions, and responsive continuation.
 - Interaction model: selected state, hover/focus affordances, filters, tabs, mode switches, creation/editing flow, success state, playback state, game HUD, or other local-state behavior the implementation must support.
@@ -70,6 +71,8 @@ Before writing the Image Gen brief, choose a compact visual direction that fits 
 - Baseline settings: roughly 8.5/10 finish and distinctiveness, low-to-medium visual density unless the product demands density, generous spacing where it improves comprehension, high implementation clarity, strong typography discipline, and image-led moments when real visuals improve the page.
 - Choose one theme paradigm, one background character, one typography character, one hero or primary-screen architecture, one section rhythm, 2-4 signature component motifs, and 1-2 motion cues. Keep every generated section/state/detail concept inside that same design world.
 - Use a design direction schema before writing the final brief: thesis, audience emotion, subject material, layout architecture, type personality, component language, material coherence, signature risk, anti-slop patterns, and implementation risks.
+- For under-specified substantial UI, define a compact direction capsule before the final brief: 4-6 color roles, display/body/control type roles, one layout thesis, one signature element, one motion thesis, and the AI-default patterns to avoid.
+- When layout risk is high, sketch a tiny internal wireframe or region map before Image Gen: first viewport, primary content, action area, secondary proof/workflow, and responsive collapse.
 - Match the style intensity to the surface. Dashboards and tools usually need utility or polished product intensity; consumer/product/launch pages can use premium or high-end memorable intensity; experimental intensity needs explicit fit.
 - For under-specified work, sketch 2-3 divergent directions before writing the final brief: different layout thesis, material language, typography character, focal object/data shape, and motion mood. Select one and brief that direction clearly; do not blend options into a compromise.
 - Ground the visual direction in the subject's own world: materials, instruments, terminology, artifacts, data shapes, environments, user rituals, and emotional stakes. A concept that could fit several unrelated products by swapping copy is too generic.
@@ -91,6 +94,7 @@ Include these details in the concept brief whenever the surface is more than a s
 - Content realism: domain-specific entities, labels, dates, prices, statuses, chart/table fields, validation messages, empty-state text, and recovery copy. Avoid fake SaaS metrics or generic row names.
 - Responsive behavior: desktop, current viewport, and mobile composition for navigation, sidebars, tables, charts, media, forms, controls, and first viewport balance.
 - Motion storyboard: one entrance/reveal pattern, one interaction/state transition pattern, one optional product-tactility moment, duration/easing direction, and a reduced-motion fallback. Every motion cue must map to hierarchy, state, product tactility, or navigation.
+- Interaction proof: the primary path must be implementable with real local state such as selected, edited, filtered, submitted, confirmed, played, or generated result. Visual-only controls fail unless intentionally static.
 - Surface fit: dashboards scan and compare; tools create or edit; editors keep the work product primary; transaction flows recover and confirm; games make controls, HUD, hazards, and rewards obvious.
 
 ## Anti-Slop Concept Gate
@@ -111,6 +115,8 @@ Before accepting a generated concept, reject or regenerate it if:
 - Mobile or collapsed behavior is unclear for dense regions.
 - Motion cues are scattered decoration instead of hierarchy, state, or product tactility.
 - The layout cannot realistically become clean maintainable code without override chains or parallel component families.
+- The concept cannot be implemented as clean reusable components, real assets, and verified responsive states within repo constraints. A beautiful impossible image is not an accepted spec.
+- A first-time user would not understand within five seconds what this is, what matters first, what action is available, and what state/result the UI is showing.
 
 Revise the brief and regenerate when these failures appear.
 
@@ -138,6 +144,7 @@ Full page or app:
 Redesign from screenshot:
 
 - Use the screenshot as the edit target when preserving information architecture matters.
+- For redesign/restyle work, inspect the current UI before changing it and verify the final result against both the accepted direction and the original functional surface.
 - Preserve navigation meaning, product/brand cues, content hierarchy, controls, and page purpose.
 - Improve spacing, typography, visual hierarchy, color, image treatment, and component polish without inventing unrelated sections, fake metrics, new claims, or new product areas.
 
@@ -158,6 +165,7 @@ Content-heavy pages:
 - Keep real app UI text, form fields, nav, metrics, and controls in code.
 - Product images, background assets, posters, packaging, signage, hero photos, and brand scenes should be rendered completely by Image Gen with the text, logos, marks, labels, and branding that belong in the asset. Quote exact asset text and require verbatim rendering when text matters.
 - If the concept includes a logo, brand mark, product label, package, poster, sign, product render, or branded background object, use Image Gen editing to create standalone matching assets before coding so the implementation keeps coherent branding.
+- Record an asset manifest before coding: asset purpose, source concept, target file, crop/aspect, transparent/background need, text/logo fidelity, and where it appears in the UI.
 - Request transparent backgrounds or clean cutouts when assets need to layer into code-native UI.
 - For games, generate transparent character/state sprites or sprite sheets, terrain/platform tiles, collectibles, hazards, goal/checkpoint objects, props, and 2-3 parallax/background layers when the concept calls for depth. Keep HUD text, score, controls, collision boxes, physics, and game state code-native.
 - Use generated assets for logos, brand marks, hero imagery, product renders, editorial imagery, background scenes, cutouts, textures, posters, thumbnails, avatars, empty-state art, and illustrated objects.
@@ -168,6 +176,7 @@ Content-heavy pages:
 ## After Generation
 
 - Reject concepts that are header-only for full-surface asks, cluttered, generic, repetitive, under-specified, unreadable, over-decorated, or impractical to implement.
+- Reject or simplify concepts that are visually attractive but cannot become clean reusable components, real assets, and verified responsive states within repo constraints.
 - For every generated section/state/detail image, extract the section purpose, visual priority, readable text, typography relationships, spacing, button/control styling, component/container logic, colors, image treatment, and unclear details.
 - Extract an icon inventory before coding: every visible icon, glyph, chevron, logo-like mark, toolbar symbol, status symbol, and empty-state symbol, including meaning, outline vs filled style, stroke width, size, color, container, alignment, spacing, and state treatment.
 - If any required detail is still unclear, generate a new standalone section/state/detail image before coding. Do not crop the previous image as a shortcut.
@@ -177,7 +186,7 @@ Content-heavy pages:
 - Extract a spatial composition contract before coding: focal hierarchy, optical alignment, breathing room, density rhythm, section transitions, edge discipline, mobile line breaks, and next-section preview where relevant.
 - Extract a motion system contract before coding: implementation path, duration bands, easing character, entrance pattern, state transition pattern, optional product-tactility moment, which hierarchy/state/tactility/navigation purpose each cue serves, reduced-motion behavior, and performance risks.
 - Extract a copy contract before coding when the UI contains generated copy: user-side naming, stable action vocabulary, empty-state action, concrete error recovery, and labels that match the audience.
-- Extract a state matrix, content/data realism check, responsive behavior plan, and motion storyboard before coding. If any of these cannot be inferred, generate a clearer state/detail concept first.
+- Extract a state matrix, content/data realism check, responsive behavior plan, motion storyboard, interaction proof path, and asset manifest before coding. If any of these cannot be inferred, generate a clearer state/detail concept first.
 - Treat the accepted concept as the visual spec. Match composition, hierarchy, palette, gradients, typography, spacing, imagery, components, container model, and asset treatment. Do not strip text or branding out of generated product/background assets just because app UI text should stay code-native.
 - Do not reinterpret the palette for taste. Do not replace white backgrounds with cream/off-white, warm up neutral backgrounds, cool down surfaces, or shift accent colors unless the accepted concept visibly does that.
 - Do not add a color overlay, tint, or translucent wash over a hero image unless the accepted concept clearly has one. If a hero image needs help blending into the surrounding page, prefer a matching generated asset, transparent cutout, edge fade, mask, or background gradient around the image instead of an overlay on top of the image.

@@ -13,6 +13,12 @@ Use this reference before implementation and during final verification for subst
 - Wrapper components that only add styling are suspicious; prefer a real primitive variant or shared layout primitive.
 - One-off styling is allowed only for accepted-concept fidelity and must remain isolated, named, and justified.
 
+## Styling Conflict Gate
+
+- Audit duplicated selectors/classes, contradictory Tailwind utilities, inherited browser/control typography, specificity fights, and responsive classes that cancel the intended layout.
+- Repeated class chains that fight tokens or variants mean the component system needs repair, not another local override.
+- If the browser screenshot looks close but computed styles reveal conflicting layout, spacing, color, typography, or responsive rules, fix the conflict before final polish.
+
 ## Spatial Composition Gate
 
 - Focal hierarchy: the first eye target, second target, and action target must be obvious within five seconds.
@@ -24,6 +30,11 @@ Use this reference before implementation and during final verification for subst
 - Section transitions: adjacent sections should connect through shared gutters, bands, type rhythm, color cadence, media framing, or motion.
 - Mobile line breaks: headings, CTAs, nav, controls, table cells, labels, and error text must wrap intentionally.
 - Next-section preview: landing/product first viewports should hint at what follows unless the accepted concept clearly does otherwise.
+
+## First-Use Comprehension Gate
+
+- Within five seconds, the intended user should understand what this is, what matters first, what action is available, and what state/result the UI is showing.
+- If the first viewport is visually impressive but the product, workflow, action, or current state is unclear, repair hierarchy, copy, data, and primary action before final.
 
 ## Motion System Contract
 
@@ -45,6 +56,12 @@ Use this reference before implementation and during final verification for subst
 - Critical information must never be hover-only.
 - Reduced-motion mode must remain usable and clear.
 
+## Interaction Proof Gate
+
+- The primary interaction path must update real local UI state: selected, edited, filtered, submitted, confirmed, played, or generated result.
+- Visual-only controls fail unless the surface is intentionally static and that constraint is recorded.
+- Success, error, disabled, empty, loading, selected, and confirmation states should exist where the requested workflow implies them.
+
 ## Taste Review Gate
 
 Run this after fidelity and before final response:
@@ -54,6 +71,7 @@ Run this after fidelity and before final response:
 - Weakest visual moment: what still looks ordinary, under-designed, or generic?
 - AI-slop / AI-default residue: what could still be mistaken for a template, default SaaS page, default dashboard, or generic portfolio?
 - Raw/default component smell: does any shadcn/ui or other component-library primitive still look dropped in instead of designed into the system?
+- First-use comprehension: can the intended user understand within five seconds what this is, what matters first, what action is available, and what state/result is shown?
 - Typography issue: which text group, label, button, row, chart, or mobile line break would a senior designer flag?
 - Spatial issue: where are hierarchy, alignment, spacing, rhythm, or edge handling weakest?
 - Screenshot-worthy reason: why would this exact viewport be worth showing, not just usable?
@@ -62,4 +80,4 @@ Run this after fidelity and before final response:
 - Final restraint check: which accessory-like effect, badge, glow, wrapper, icon, decoration, or motion cue can be removed or quieted because it adds noise without meaning?
 - Next three fixes: list the smallest concrete fixes that would most improve perceived quality.
 
-If the strongest visual moment is weak, the identity test fails, or any raw/default component smell remains, final response is blocked. Keep editing before handoff. Do not hide behind "matches the concept" when the concept or implementation still feels weak.
+If the strongest visual moment is weak, the identity test fails, first-use comprehension fails, interaction proof is missing, or any raw/default component smell remains, final response is blocked. Keep editing before handoff. Do not hide behind "matches the concept" when the concept or implementation still feels weak.

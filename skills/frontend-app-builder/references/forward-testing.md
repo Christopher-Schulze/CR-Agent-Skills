@@ -8,7 +8,7 @@ Use this reference when maintaining or evaluating Frontend App Builder itself. D
 - Pass raw task prompts, assets, or repo paths. Do not leak intended fixes.
 - Evaluate concept quality, implementation plan, rendered output, and verification behavior.
 - Prefer artifacts: generated concepts, screenshots, diffs, console output, QA ledgers, and final responses.
-- Run the full prompt set, or at least 5 hard prompts, before treating a major wording change as proven.
+- Run the full prompt set, or at least 5 hard prompts with real generated concepts, implemented UI, and screenshots, before treating a major wording change as proven.
 - Tighten the skill from repeated failure patterns and artifact evidence, not intuition, taste claims, or one subjective miss.
 - Prefer routing, sharper gates, and better verification loops over adding broad prose.
 
@@ -34,7 +34,10 @@ Score each dimension from 1-5. A revision should improve the median without maki
 | Content realism | Placeholder data/copy | Plausible basics | Domain-specific, edge-case aware |
 | State coverage | Mostly static | Core states | Complete state matrix for workflow |
 | Component system | One-off markup | Some reuse | Clean primitives, tokens, variants |
+| Concept feasibility | Pretty but impractical | Mostly buildable | Cleanly maps to reusable components, real assets, and responsive states |
 | Motion | Decorative or absent | Useful basics | Purposeful storyboard with restraint |
+| First-use comprehension | Unclear what to do | Understandable after scanning | Clear product, priority, action, and state within five seconds |
+| Interaction proof | Inert controls | Some local state | Primary path proves real selected/edited/filtered/submitted/confirmed/played/generated state |
 | Fidelity QA | Build-only | Screenshot check | View-image comparison plus repair ledger |
 | Final polish | Accepts roughness | Fixes obvious issues | Senior design review would sign off |
 
@@ -42,11 +45,16 @@ Score each dimension from 1-5. A revision should improve the median without maki
 
 - Each prompt produces a different visual direction grounded in the subject.
 - Complex surfaces produce state matrices and realistic content before coding.
+- Concepts pass feasibility: clean reusable components, real assets, and verified responsive states are plausible within repo constraints.
+- Under-specified substantial tasks produce a compact direction capsule and, where layout risk is high, an internal region map or wireframe.
 - Implementation uses reusable components and tokens rather than one-off styling.
+- Styling conflict audits do not find contradictory Tailwind/classes, specificity fights, or responsive classes cancelling the intended layout.
 - Complex implementations name their component architecture, primitive owners, and variants before coding.
 - No raw/default component-library primitives remain in the rendered UI.
+- First-use comprehension passes within five seconds.
+- Primary interaction path proves real local UI state unless the surface is intentionally static.
 - Browser screenshots pass desktop and mobile review.
-- Final response includes concept path, screenshot method, `view_image` comparison, ledger summary, and remaining deviations.
+- Final response stays concise while including concept/screenshot/verification evidence, material deviations or blockers, and how to run or view the result.
 
 ## Failure Patterns To Fix
 
@@ -57,6 +65,10 @@ Score each dimension from 1-5. A revision should improve the median without maki
 - Inert controls presented as product behavior.
 - Visual QA stops after build success.
 - Raw shadcn/ui or other component-library defaults appear as finished UI.
+- Styling conflicts, contradictory utility classes, or specificity fights survive into final screenshots.
+- Beautiful generated concept cannot be implemented cleanly within repo constraints.
+- First-use comprehension fails even though the viewport looks polished.
+- Primary controls are visual-only when the task implies real selected, edited, filtered, submitted, confirmed, played, or generated state.
 - Component architecture collapses into one giant screen component or duplicated wrappers.
 - The strongest viewport is usable but not memorable, subject-specific, or beyond normal AI-generated UI.
 - The skill grows with duplicate prose instead of better routing or references.

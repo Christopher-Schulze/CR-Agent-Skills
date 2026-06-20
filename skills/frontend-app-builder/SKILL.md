@@ -54,6 +54,8 @@ Treat every substantial UI as high-end product/design work, not a styled scaffol
 
 This skill owns visual concepting and faithful frontend implementation. Use other installed skills when the app needs capabilities outside frontend design. Provider setup should not block Image Gen concepting, static UI work, or design review that does not exercise provider-backed behavior, but implementation and verification of provider-backed behavior should coordinate through the installed skill for that capability. Avoid placeholder setup instructions when another installed skill covers that setup.
 
+When running in Codex, use the named Codex capabilities exactly as written. When a named Codex tool, plugin, skill, or approval mechanism is unavailable in the current harness, use the closest equivalent native capability and briefly state the substitution: Image Gen -> available image generation/editing tool, Browser/IAB -> built-in browser or web preview, `view_image` -> image/screenshot inspection tool, `request_user_input` -> native approval or clarifying-question mechanism, Playwright -> terminal browser automation.
+
 For AI/model-generated output, use `openai-developers:openai-platform-api-key` when available unless the user names another provider or explicitly says not to use OpenAI. When that skill is available, always use its credential flow instead of fake keys, placeholder env vars, or manual API-key setup instructions.
 
 ## Image Gen Workflow

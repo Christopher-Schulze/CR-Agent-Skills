@@ -39,8 +39,10 @@ The official MCP Python SDK provides FastMCP, a high-level framework for buildin
 - Pydantic model integration for input validation
 - Decorator-based tool registration with `@mcp.tool`
 
-**For complete SDK documentation, use WebFetch to load:**
-`https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+**For complete SDK documentation, fetch current official docs with the current harness's web/documentation tool:**
+`https://github.com/modelcontextprotocol/python-sdk`
+
+As of the current official README, Python SDK v1 is the stable line and v2 is pre-release. For stable projects, pin `mcp>=1.27,<2` unless the user explicitly wants a v2 pre-release.
 
 ## Server Naming Convention
 

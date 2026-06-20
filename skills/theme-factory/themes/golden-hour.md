@@ -17,3 +17,15 @@ A rich and warm autumnal palette that creates an inviting and sophisticated atmo
 ## Best Used For
 
 Restaurant presentations, hospitality brands, fall campaigns, cozy lifestyle content, artisan products.
+
+## Role Mapping
+
+- **Background**: Warm Beige for soft sections; white or cream for dense content.
+- **Primary Text**: Chocolate Brown for readable warmth.
+- **Accent**: Mustard Yellow for focal details and energetic highlights.
+- **Secondary Accent**: Terracotta for emotional warmth and section markers.
+- **Divider/Frame**: Warm Beige-darkened borders or low-opacity Chocolate Brown.
+
+## Application Notes
+
+Use this theme for warm, sensory, inviting artifacts. Keep yellow as an accent, not a flood fill, and use Chocolate Brown to prevent the palette from becoming washed out.

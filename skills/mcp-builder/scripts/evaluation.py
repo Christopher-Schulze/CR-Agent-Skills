@@ -1,6 +1,7 @@
-"""MCP Server Evaluation Harness
+"""MCP server evaluation harness.
 
-This script evaluates MCP servers by running test questions against them using Claude.
+This script evaluates MCP servers by running test questions against them with the
+OpenAI Responses API and MCP tools.
 """
 
 import argparse
@@ -14,7 +15,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
-from anthropic import Anthropic
+from openai import OpenAI
 
 from connections import create_connection
 
@@ -83,87 +84,136 @@ def extract_xml_content(text: str, tag: str) -> str | None:
     return matches[-1].strip() if matches else None
 
 
+def to_jsonable(value: Any) -> Any:
+    """Convert SDK/model objects into JSON-serializable data."""
+    if hasattr(value, "model_dump"):
+        return value.model_dump()
+    if hasattr(value, "dict"):
+        return value.dict()
+    if isinstance(value, list):
+        return [to_jsonable(item) for item in value]
+    if isinstance(value, dict):
+        return {key: to_jsonable(item) for key, item in value.items()}
+    return value
+
+
+def tool_result_to_string(tool_result: Any) -> str:
+    """Serialize MCP tool output for model consumption."""
+    try:
+        return json.dumps(to_jsonable(tool_result), ensure_ascii=False, default=str)
+    except TypeError:
+        return str(tool_result)
+
+
+def mcp_tool_to_openai_tool(tool: dict[str, Any]) -> dict[str, Any]:
+    """Convert an MCP tool description into an OpenAI function tool."""
+    parameters = tool.get("input_schema") or {"type": "object", "properties": {}}
+    if not isinstance(parameters, dict) or parameters.get("type") != "object":
+        parameters = {"type": "object", "properties": {}, "additionalProperties": False}
+    return {
+        "type": "function",
+        "name": tool["name"],
+        "description": tool.get("description") or f"Call MCP tool {tool['name']}",
+        "parameters": parameters,
+        "strict": False,
+    }
+
+
+def response_text(response: Any) -> str:
+    """Extract text from a Responses API response."""
+    output_text = getattr(response, "output_text", None)
+    if output_text:
+        return output_text
+
+    text_parts = []
+    for item in getattr(response, "output", []) or []:
+        if getattr(item, "type", None) != "message":
+            continue
+        for content in getattr(item, "content", []) or []:
+            text = getattr(content, "text", None)
+            if text:
+                text_parts.append(text)
+    return "\n".join(text_parts)
+
+
 async def agent_loop(
-    client: Anthropic,
+    client: OpenAI,
     model: str,
     question: str,
     tools: list[dict[str, Any]],
     connection: Any,
+    max_tool_steps: int,
 ) -> tuple[str, dict[str, Any]]:
     """Run the agent loop with MCP tools."""
-    messages = [{"role": "user", "content": question}]
-
-    response = await asyncio.to_thread(
-        client.messages.create,
-        model=model,
-        max_tokens=4096,
-        system=EVALUATION_PROMPT,
-        messages=messages,
-        tools=tools,
-    )
-
-    messages.append({"role": "assistant", "content": response.content})
-
+    input_messages: list[Any] = [{"role": "user", "content": question}]
     tool_metrics = {}
-
-    while response.stop_reason == "tool_use":
-        tool_use = next(block for block in response.content if block.type == "tool_use")
-        tool_name = tool_use.name
-        tool_input = tool_use.input
-
-        tool_start_ts = time.time()
-        try:
-            tool_result = await connection.call_tool(tool_name, tool_input)
-            tool_response = json.dumps(tool_result) if isinstance(tool_result, (dict, list)) else str(tool_result)
-        except Exception as e:
-            tool_response = f"Error executing tool {tool_name}: {str(e)}\n"
-            tool_response += traceback.format_exc()
-        tool_duration = time.time() - tool_start_ts
-
-        if tool_name not in tool_metrics:
-            tool_metrics[tool_name] = {"count": 0, "durations": []}
-        tool_metrics[tool_name]["count"] += 1
-        tool_metrics[tool_name]["durations"].append(tool_duration)
-
-        messages.append({
-            "role": "user",
-            "content": [{
-                "type": "tool_result",
-                "tool_use_id": tool_use.id,
-                "content": tool_response,
-            }]
-        })
-
+    for _ in range(max_tool_steps):
         response = await asyncio.to_thread(
-            client.messages.create,
+            client.responses.create,
             model=model,
-            max_tokens=4096,
-            system=EVALUATION_PROMPT,
-            messages=messages,
+            instructions=EVALUATION_PROMPT,
+            input=input_messages,
             tools=tools,
         )
-        messages.append({"role": "assistant", "content": response.content})
 
-    response_text = next(
-        (block.text for block in response.content if hasattr(block, "text")),
-        None,
-    )
-    return response_text, tool_metrics
+        function_calls = [
+            item for item in getattr(response, "output", []) or []
+            if getattr(item, "type", None) == "function_call"
+        ]
+        if not function_calls:
+            return response_text(response), tool_metrics
+
+        input_messages.extend(response.output)
+        for tool_call in function_calls:
+            tool_name = tool_call.name
+            try:
+                tool_input = json.loads(tool_call.arguments or "{}")
+            except json.JSONDecodeError as e:
+                tool_response = f"Error parsing tool arguments for {tool_name}: {e}"
+                input_messages.append({
+                    "type": "function_call_output",
+                    "call_id": tool_call.call_id,
+                    "output": tool_response,
+                })
+                continue
+
+            tool_start_ts = time.time()
+            try:
+                tool_result = await connection.call_tool(tool_name, tool_input)
+                tool_response = tool_result_to_string(tool_result)
+            except Exception as e:
+                tool_response = f"Error executing tool {tool_name}: {str(e)}\n"
+                tool_response += traceback.format_exc()
+            tool_duration = time.time() - tool_start_ts
+
+            if tool_name not in tool_metrics:
+                tool_metrics[tool_name] = {"count": 0, "durations": []}
+            tool_metrics[tool_name]["count"] += 1
+            tool_metrics[tool_name]["durations"].append(tool_duration)
+
+            input_messages.append({
+                "type": "function_call_output",
+                "call_id": tool_call.call_id,
+                "output": tool_response,
+            })
+
+    return "<response>NOT_FOUND</response>", tool_metrics
 
 
 async def evaluate_single_task(
-    client: Anthropic,
+    client: OpenAI,
     model: str,
     qa_pair: dict[str, Any],
     tools: list[dict[str, Any]],
     connection: Any,
     task_index: int,
+    max_tool_steps: int,
 ) -> dict[str, Any]:
     """Evaluate a single QA pair with the given tools."""
     start_time = time.time()
 
     print(f"Task {task_index + 1}: Running task with question: {qa_pair['question']}")
-    response, tool_metrics = await agent_loop(client, model, qa_pair["question"], tools, connection)
+    response, tool_metrics = await agent_loop(client, model, qa_pair["question"], tools, connection, max_tool_steps)
 
     response_value = extract_xml_content(response, "response")
     summary = extract_xml_content(response, "summary")
@@ -220,23 +270,25 @@ TASK_TEMPLATE = """
 async def run_evaluation(
     eval_path: Path,
     connection: Any,
-    model: str = "claude-3-7-sonnet-20250219",
+    model: str = "gpt-5.5",
+    max_tool_steps: int = 12,
 ) -> str:
     """Run evaluation with MCP server tools."""
-    print("🚀 Starting Evaluation")
+    print("Starting MCP evaluation")
 
-    client = Anthropic()
+    client = OpenAI()
 
-    tools = await connection.list_tools()
-    print(f"📋 Loaded {len(tools)} tools from MCP server")
+    mcp_tools = await connection.list_tools()
+    tools = [mcp_tool_to_openai_tool(tool) for tool in mcp_tools]
+    print(f"Loaded {len(tools)} tools from MCP server")
 
     qa_pairs = parse_evaluation_file(eval_path)
-    print(f"📋 Loaded {len(qa_pairs)} evaluation tasks")
+    print(f"Loaded {len(qa_pairs)} evaluation tasks")
 
     results = []
     for i, qa_pair in enumerate(qa_pairs):
         print(f"Processing task {i + 1}/{len(qa_pairs)}")
-        result = await evaluate_single_task(client, model, qa_pair, tools, connection, i)
+        result = await evaluate_single_task(client, model, qa_pair, tools, connection, i, max_tool_steps)
         results.append(result)
 
     correct = sum(r["score"] for r in results)
@@ -307,21 +359,22 @@ async def main():
         description="Evaluate MCP servers using test questions",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
-  # Evaluate a local stdio MCP server
-  python evaluation.py -t stdio -c python -a my_server.py eval.xml
+	Examples:
+	  # Evaluate a local stdio MCP server
+	  python evaluation.py -t stdio -c python -a my_server.py eval.xml
 
-  # Evaluate an SSE MCP server
-  python evaluation.py -t sse -u https://example.com/mcp -H "Authorization: Bearer token" eval.xml
+	  # Evaluate an SSE MCP server
+	  python evaluation.py -t sse -u https://example.com/mcp -H "Authorization: Bearer token" eval.xml
 
-  # Evaluate an HTTP MCP server with custom model
-  python evaluation.py -t http -u https://example.com/mcp -m claude-3-5-sonnet-20241022 eval.xml
-        """,
-    )
+	  # Evaluate an HTTP MCP server with custom model
+	  python evaluation.py -t http -u https://example.com/mcp -m gpt-5.5 eval.xml
+	        """,
+	    )
 
     parser.add_argument("eval_file", type=Path, help="Path to evaluation XML file")
     parser.add_argument("-t", "--transport", choices=["stdio", "sse", "http"], default="stdio", help="Transport type (default: stdio)")
-    parser.add_argument("-m", "--model", default="claude-3-7-sonnet-20250219", help="Claude model to use (default: claude-3-7-sonnet-20250219)")
+    parser.add_argument("-m", "--model", default="gpt-5.5", help="OpenAI model to use (default: gpt-5.5)")
+    parser.add_argument("--max-tool-steps", type=int, default=12, help="Maximum model/tool-call loop iterations per task (default: 12)")
 
     stdio_group = parser.add_argument_group("stdio options")
     stdio_group.add_argument("-c", "--command", help="Command to run MCP server (stdio only)")
@@ -356,15 +409,15 @@ Examples:
         print(f"Error: {e}")
         sys.exit(1)
 
-    print(f"🔗 Connecting to MCP server via {args.transport}...")
+    print(f"Connecting to MCP server via {args.transport}...")
 
     async with connection:
-        print("✅ Connected successfully")
-        report = await run_evaluation(args.eval_file, connection, args.model)
+        print("Connected successfully")
+        report = await run_evaluation(args.eval_file, connection, args.model, args.max_tool_steps)
 
         if args.output:
             args.output.write_text(report)
-            print(f"\n✅ Report saved to {args.output}")
+            print(f"\nReport saved to {args.output}")
         else:
             print("\n" + report)
 

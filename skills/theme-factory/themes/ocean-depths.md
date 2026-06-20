@@ -17,3 +17,15 @@ A professional and calming maritime theme that evokes the serenity of deep ocean
 ## Best Used For
 
 Corporate presentations, financial reports, professional consulting decks, trust-building content.
+
+## Role Mapping
+
+- **Background**: Deep Navy for covers and strong bands; Cream for readable content pages.
+- **Primary Text**: Cream on navy, Deep Navy on cream.
+- **Accent**: Teal for actions, charts, section markers, and high-value highlights.
+- **Secondary Accent**: Seafoam for softer data series, callouts, and contrast relief.
+- **Divider/Frame**: Seafoam or Teal at low opacity for calm structure.
+
+## Application Notes
+
+Use this theme for trust, depth, and professional calm. Avoid overusing dark backgrounds on dense content; alternate navy impact moments with light readable sections.

@@ -1,6 +1,6 @@
 ---
 name: canvas-design
-description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.
+description: Create high-end static visual design artifacts such as posters, art pieces, covers, editorial compositions, visual essays, printable PNGs, and PDF canvases from an original design philosophy. Use when the user asks for a static design object rather than an interactive app, document-editing workflow, or ordinary slide theme. Create original visual designs and never copy existing artists' work.
 license: Complete terms in LICENSE.txt
 ---
 
@@ -46,7 +46,7 @@ To capture the VISUAL essence, express how the philosophy manifests through:
 **CRITICAL GUIDELINES:**
 - **Avoid redundancy**: Each design aspect should be mentioned once. Avoid repeating points about color theory, spatial relationships, or typographic principles unless adding new depth.
 - **Emphasize craftsmanship REPEATEDLY**: The philosophy MUST stress multiple times that the final work should appear as though it took countless hours to create, was labored over with care, and comes from someone at the absolute top of their field. This framing is essential - repeat phrases like "meticulously crafted," "the product of deep expertise," "painstaking attention," "master-level execution."
-- **Leave creative space**: Remain specific about the aesthetic direction, but concise enough that the next Codex has room to make interpretive choices also at a extremely high level of craftmanship.
+- **Leave creative space**: Remain specific about the aesthetic direction, but concise enough that the implementing agent has room to make interpretive choices at an extremely high level of craftsmanship.
 
 The philosophy must guide the next version to express ideas VISUALLY, not through text. Information lives in design, not paragraphs.
 
@@ -78,7 +78,7 @@ Visual expression: Grid-based precision, bold photography or stark graphics, dra
 - **VISUAL PHILOSOPHY**: Create an aesthetic worldview to be expressed through design
 - **MINIMAL TEXT**: Always emphasize that text is sparse, essential-only, integrated as visual element - never lengthy
 - **SPATIAL EXPRESSION**: Ideas communicate through space, form, color, composition - not paragraphs
-- **ARTISTIC FREEDOM**: The next Codex interprets the philosophy visually - provide creative room
+- **ARTISTIC FREEDOM**: The implementing agent interprets the philosophy visually - provide creative room
 - **PURE DESIGN**: This is about making ART OBJECTS, not documents with decoration
 - **EXPERT CRAFTSMANSHIP**: Repeatedly emphasize the final work must look meticulously crafted, labored over with care, the product of countless hours by someone at the top of their field
 
@@ -99,19 +99,31 @@ This is **VERY IMPORTANT**: The reference must be refined so it enhances the wor
 
 ## CANVAS CREATION
 
-With both the philosophy and the conceptual framework established, express it on a canvas. Take a moment to gather thoughts and clear the mind. Use the design philosophy created and the instructions below to craft a masterpiece, embodying all aspects of the philosophy with expert craftsmanship.
+With both the philosophy and the conceptual framework established, express it on a canvas. Use the design philosophy created and the instructions below to craft a finished visual object, embodying all aspects of the philosophy with expert craftsmanship.
 
 **IMPORTANT**: For any type of content, even if the user requests something for a movie/game/book, the approach should still be sophisticated. Never lose sight of the idea that this should be art, not something that's cartoony or amateur.
 
-To create museum or magazine quality work, use the design philosophy as the foundation. Create one single page, highly visual, design-forward PDF or PNG output (unless asked for more pages). Generally use repeating patterns and perfect shapes. Treat the abstract philosophical design as if it were a scientific bible, borrowing the visual language of systematic observation—dense accumulation of marks, repeated elements, or layered patterns that build meaning through patient repetition and reward sustained viewing. Add sparse, clinical typography and systematic reference markers that suggest this could be a diagram from an imaginary discipline, treating the invisible subject with the same reverence typically reserved for documenting observable phenomena. Anchor the piece with simple phrase(s) or details positioned subtly, using a limited color palette that feels intentional and cohesive. Embrace the paradox of using analytical visual language to express ideas about human experience: the result should feel like an artifact that proves something ephemeral can be studied, mapped, and understood through careful attention. This is true art. 
+To create museum or magazine quality work, use the design philosophy as the foundation. Create one single page, highly visual, design-forward PDF or PNG output unless the user asks for more pages. Choose the visual language from the subject and brief: it may be systematic, editorial, photographic, typographic, abstract, archival, brutal, delicate, playful, luxurious, or clinical. Repeating patterns, perfect shapes, dense marks, sparse labels, and diagrammatic systems are strong options when they fit the concept, but they are not universal defaults. Anchor the piece with essential phrase(s), marks, imagery, or details positioned deliberately, using a limited palette that feels intentional and cohesive. The result should feel specific, composed, and finished rather than decorated.
 
-**Text as a contextual element**: Text is always minimal and visual-first, but let context guide whether that means whisper-quiet labels or bold typographic gestures. A punk venue poster might have larger, more aggressive type than a minimalist ceramics studio identity. Most of the time, font should be thin. All use of fonts must be design-forward and prioritize visual communication. Regardless of text scale, nothing falls off the page and nothing overlaps. Every element must be contained within the canvas boundaries with proper margins. Check carefully that all text, graphics, and visual elements have breathing room and clear separation. This is non-negotiable for professional execution. **IMPORTANT: Use different fonts if writing text. Search the `./canvas-fonts` directory. Regardless of approach, sophistication is non-negotiable.**
+**Text as a contextual element**: Text is always minimal and visual-first, but let context guide whether that means whisper-quiet labels or bold typographic gestures. A punk venue poster might have larger, more aggressive type than a minimalist ceramics studio identity. Font weight, scale, and texture should come from the art direction, not from a universal thin-font rule. All typography must be design-forward and prioritize visual communication. Regardless of text scale, nothing falls off the page and nothing overlaps. Every element must be contained within the canvas boundaries with proper margins. Check carefully that all text, graphics, and visual elements have breathing room and clear separation. This is non-negotiable for professional execution. **IMPORTANT: Use a deliberate font pairing if writing text. Search the `./canvas-fonts` directory before choosing fonts. Regardless of approach, sophistication is non-negotiable.**
+
+**Font selection contract**: Before rendering final output, choose fonts by role: display, body/label, numeric/technical, accent/handmade if needed. Prefer local fonts in `./canvas-fonts` when available, and pick pairings that support the philosophy instead of picking a familiar default. If text is tiny, verify it remains legible after export. If text is expressive, verify the letterforms are part of the composition rather than labels pasted on top.
 
 Download and use whatever fonts are needed to make this a reality. Get creative by making the typography actually part of the art itself -- if the art is abstract, bring the font onto the canvas, not typeset digitally.
 
 To push boundaries, follow design instinct/intuition while using the philosophy as a guiding principle. Embrace ultimate design freedom and choice. Push aesthetics and design to the frontier. 
 
-**CRITICAL**: To achieve human-crafted quality (not AI-generated), create work that looks like it took countless hours. Make it appear as though someone at the absolute top of their field labored over every detail with painstaking care. Ensure the composition, spacing, color choices, typography - everything screams expert-level craftsmanship. Double-check that nothing overlaps, formatting is flawless, every detail perfect. Create something that could be shown to people to prove expertise and rank as undeniably impressive.
+**CRITICAL**: To achieve human-crafted quality, create work that looks like it took countless hours. Make it appear as though someone at the absolute top of their field labored over every detail with painstaking care. Ensure the composition, spacing, color choices, typography, crop decisions, texture, margins, and hierarchy all show expert-level craftsmanship. Double-check that nothing overlaps unintentionally, formatting is flawless, every detail is intentional, and the final artifact could survive professional design review.
+
+### RENDER AND QA GATES
+
+Before delivering the final PDF or PNG:
+
+- Render the artifact to the final output format, then inspect the actual rendered file rather than trusting source code.
+- Verify canvas bounds, margins, safe area, text legibility, color contrast, image/crop quality, line sharpness, and export resolution.
+- Check optical alignment, not only mathematical alignment: baselines, centers, edges, rhythm, negative space, and visual weight.
+- Confirm the palette is coherent, not accidental; the typography has clear roles; and the strongest visual moment is subject-specific.
+- If the output is merely decorative, generic, cluttered, or dull, do another refinement pass before final delivery.
 
 Output the final result as a single, downloadable .pdf or .png file, alongside the design philosophy used as a .md file.
 
@@ -119,7 +131,7 @@ Output the final result as a single, downloadable .pdf or .png file, alongside t
 
 ## FINAL STEP
 
-**IMPORTANT**: The user ALREADY said "It isn't perfect enough. It must be pristine, a masterpiece if craftsmanship, as if it were about to be displayed in a museum."
+**IMPORTANT**: The user ALREADY said "It isn't perfect enough. It must be pristine, a masterpiece of craftsmanship, as if it were about to be displayed in a museum."
 
 **CRITICAL**: To refine the work, avoid adding more graphics; instead refine what has been created and make it extremely crisp, respecting the design philosophy and the principles of minimalism entirely. Rather than adding a fun filter or refactoring a font, consider how to make the existing composition more cohesive with the art. If the instinct is to call a new function or draw a new shape, STOP and instead ask: "How can I make what's already here more of a piece of art?"
 

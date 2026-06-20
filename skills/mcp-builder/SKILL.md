@@ -50,25 +50,25 @@ Key pages to review:
 #### 1.3 Study Framework Documentation
 
 **Recommended stack:**
-- **Language**: TypeScript (high-quality SDK support and good compatibility in many execution environments e.g. MCPB. Plus AI models are good at generating TypeScript code, benefiting from its broad usage, static typing and good linting tools)
-- **Transport**: Streamable HTTP for remote servers, using stateless JSON (simpler to scale and maintain, as opposed to stateful sessions and streaming responses). stdio for local servers.
+- **Language**: TypeScript for most new servers when no repo constraint exists, because the current official TypeScript SDK has strong server APIs, Zod validation, structured output support, and broad host compatibility. Use Python/FastMCP when the surrounding project, SDK ecosystem, or API client is Python-first.
+- **Transport**: Streamable HTTP for remote servers and multi-client use. Use stdio for local, single-user, process-spawned integrations.
 
 **Load framework documentation:**
 
 - **MCP Best Practices**: [📋 View Best Practices](./reference/mcp_best_practices.md) - Core guidelines
 
 **For TypeScript (recommended):**
-- **TypeScript SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+- **TypeScript SDK**: Fetch current official docs with the current harness's web/documentation tool. Start with `https://github.com/modelcontextprotocol/typescript-sdk` and `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/docs/server.md`.
 - [⚡ TypeScript Guide](./reference/node_mcp_server.md) - TypeScript patterns and examples
 
 **For Python:**
-- **Python SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+- **Python SDK**: Fetch current official docs with the current harness's web/documentation tool. Start with `https://github.com/modelcontextprotocol/python-sdk` and check whether the project should target stable v1 or an explicitly pinned v2 pre-release.
 - [🐍 Python Guide](./reference/python_mcp_server.md) - Python patterns and examples
 
 #### 1.4 Plan Your Implementation
 
 **Understand the API:**
-Review the service's API documentation to identify key endpoints, authentication requirements, and data models. Use web search and WebFetch as needed.
+Review the service's API documentation to identify key endpoints, authentication requirements, and data models. Use current official docs whenever possible; in Codex, use available web or documentation tools and prefer primary sources over blog posts.
 
 **Tool Selection:**
 Prioritize comprehensive API coverage. List endpoints to implement, starting with the most common operations.
@@ -137,8 +137,8 @@ Review for:
 #### 3.2 Build and Test
 
 **TypeScript:**
-- Run `npm run build` to verify compilation
-- Test with MCP Inspector: `npx @modelcontextprotocol/inspector`
+- Run the repo's package-manager build command to verify compilation (`bun`, `pnpm`, `npm`, or the existing project standard)
+- Test with MCP Inspector when available
 
 **Python:**
 - Verify syntax: `python -m py_compile your_server.py`

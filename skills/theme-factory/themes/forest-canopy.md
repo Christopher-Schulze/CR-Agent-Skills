@@ -17,3 +17,15 @@ A natural and grounded theme featuring earth tones inspired by dense forest envi
 ## Best Used For
 
 Environmental presentations, sustainability reports, outdoor brands, wellness content, organic products.
+
+## Role Mapping
+
+- **Background**: Ivory for readable pages; Forest Green for strong covers or title slides.
+- **Primary Text**: Forest Green on light fields or Ivory on dark fields.
+- **Muted Text**: Sage for captions, labels, and secondary data.
+- **Accent**: Olive for highlights, charts, and organic markers.
+- **Divider/Frame**: Sage at low opacity for calm structure.
+
+## Application Notes
+
+Use this theme for grounded, trustworthy, nature-adjacent artifacts. Avoid muddy midtone stacking; pair dark green with ivory generously.

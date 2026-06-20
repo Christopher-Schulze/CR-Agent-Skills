@@ -4,17 +4,20 @@
 
 This document provides Node/TypeScript-specific best practices and examples for implementing MCP servers using the MCP TypeScript SDK. It covers project structure, server setup, tool registration patterns, input validation with Zod, error handling, and complete working examples.
 
+Before copying exact imports or package names, verify the current official TypeScript SDK docs. The modern v2 documentation uses scoped packages such as `@modelcontextprotocol/server`, `@modelcontextprotocol/node`, `@modelcontextprotocol/express`, and Zod v4 imports.
+
 ---
 
 ## Quick Reference
 
 ### Key Imports
 ```typescript
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { createMcpExpressApp } from "@modelcontextprotocol/express";
+import { NodeStreamableHTTPServerTransport } from "@modelcontextprotocol/node";
+import { McpServer } from "@modelcontextprotocol/server";
+import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import express from "express";
-import { z } from "zod";
+import * as z from "zod/v4";
 ```
 
 ### Server Initialization
@@ -60,7 +63,7 @@ The official MCP TypeScript SDK provides:
 - **DO NOT use**: Old deprecated APIs such as `server.tool()`, `server.setRequestHandler(ListToolsRequestSchema, ...)`, or manual handler registration
 - The `register*` methods provide better type safety, automatic schema handling, and are the recommended approach
 
-See the MCP SDK documentation in the references for complete details.
+See the current MCP SDK documentation before finalizing exact package names, imports, transport constructors, and middleware.
 
 ## Server Naming Convention
 
@@ -114,8 +117,8 @@ Tools are registered using the `registerTool` method with the following requirem
 - Type all parameters and return values explicitly
 
 ```typescript
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { z } from "zod";
+import { McpServer } from "@modelcontextprotocol/server";
+import * as z from "zod/v4";
 
 const server = new McpServer({
   name: "example-mcp",
@@ -544,9 +547,11 @@ async function getUser(id: string): Promise<any> {
     "node": ">=18"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.6.1",
+    "@modelcontextprotocol/server": "latest",
+    "@modelcontextprotocol/node": "latest",
+    "@modelcontextprotocol/express": "latest",
     "axios": "^1.7.9",
-    "zod": "^3.23.8"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
@@ -592,9 +597,9 @@ async function getUser(id: string): Promise<any> {
  * project management, and data export capabilities.
  */
 
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+import { McpServer } from "@modelcontextprotocol/server";
+import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
+import * as z from "zod/v4";
 import axios, { AxiosError } from "axios";
 
 // Constants
@@ -764,7 +769,7 @@ if (transport === 'http') {
 Expose data as resources for efficient, URI-based access:
 
 ```typescript
-import { ResourceTemplate } from "@modelcontextprotocol/sdk/types.js";
+import { ResourceTemplate } from "@modelcontextprotocol/server";
 
 // Register a resource with URI template
 server.registerResource(
@@ -821,7 +826,7 @@ The TypeScript SDK supports two main transport mechanisms:
 #### Streamable HTTP (Recommended for Remote Servers)
 
 ```typescript
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { NodeStreamableHTTPServerTransport } from "@modelcontextprotocol/node";
 import express from "express";
 
 const app = express();
@@ -829,7 +834,7 @@ app.use(express.json());
 
 app.post('/mcp', async (req, res) => {
   // Create new transport for each request (stateless, prevents request ID collisions)
-  const transport = new StreamableHTTPServerTransport({
+  const transport = new NodeStreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
     enableJsonResponse: true
   });
@@ -900,17 +905,17 @@ Your implementation MUST prioritize composability and code reuse:
 Always build your TypeScript code before running:
 
 ```bash
-# Build the project
-npm run build
+# Build the project with the repo's package manager
+bun run build   # or pnpm/npm if the repo standardizes on that
 
 # Run the server
-npm start
+bun run start   # or the existing start command
 
 # Development with auto-reload
-npm run dev
+bun run dev
 ```
 
-Always ensure `npm run build` completes successfully before considering the implementation complete.
+Always ensure the repository's build command completes successfully before considering the implementation complete.
 
 ## Quality Checklist
 
@@ -963,7 +968,7 @@ Before finalizing your Node/TypeScript MCP server implementation, ensure:
 - [ ] Return types are consistent across similar operations
 
 ### Testing and Build
-- [ ] `npm run build` completes successfully without errors
+- [ ] Repository build command completes successfully without errors
 - [ ] dist/index.js created and executable
 - [ ] Server runs: `node dist/index.js --help`
 - [ ] All imports resolve correctly

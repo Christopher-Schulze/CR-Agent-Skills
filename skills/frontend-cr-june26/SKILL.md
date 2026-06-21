@@ -69,8 +69,16 @@ Load the most relevant supplemental reference before substantial concepting:
 - `references/editors-canvas.md` for editors, builders, media tools, canvas/document tools, code tools, and creation surfaces.
 - `references/mobile-flows.md` for mobile-first apps, booking, checkout, onboarding, signup, purchase, scheduling, and form-heavy flows.
 - `references/games.md` for browser games, playable scenes, toy apps, simulations, and highly animated interactive surfaces.
+- `references/design-decision-examples.md` before substantial concepting when the task is under-specified, taste-critical, or likely to drift into generic premium UI.
+- `references/style-archetypes.md` before choosing visual direction when the brief is open, sameness risk is high, or the UI needs a stronger design world.
+- `references/concept-contract.md` before accepting a substantial concept or starting implementation.
+- `references/score-anchors.md` when scoring concepts, resolving close calls, or explaining why a design is accepted/rejected.
+- `references/golden-quality-examples.md` when taste calibration is fuzzy and the difference between acceptable and agency-grade needs examples.
+- `references/failure-taxonomy.md` when a concept or render feels weak, generic, crowded, hollow, default-looking, or hard to diagnose.
+- `references/forward-test-battery.md` after substantial skill revisions or when proving whether the skill actually improves fresh-agent outputs.
 - `references/technology-stack.md` before choosing frameworks, installing packages, changing frontend tooling, or relying on current Tailwind/shadcn/ui/motion syntax.
 - `references/quality-gates.md` before implementation and final verification for substantial UI.
+- `references/qa-report-template.md` during final verification when a written fidelity, density, component, and interaction evidence pass is needed.
 
 Before calling Image Gen:
 
@@ -128,6 +136,81 @@ Use these defaults when the user has not given stronger art direction. Adapt the
 - Section continuity: when multiple section concepts need to become one page, use connective tissue from the existing design system: gutters, bands, alignment, repeated typography, recurring media frames, color rhythm, and small transitional spacing shifts. Do not invent major new carousels, accordions, pricing cards, dashboards, forms, nav systems, feature grids, or other component families unless the user requested them or the accepted concepts show them.
 - Media framing: generated imagery should usually sit in clear, implementation-friendly frames with stable aspect ratios, consistent crop logic, radius, shadows, and spacing. Avoid random image sizes or collage chaos unless the user explicitly asks for that direction.
 - UI restraints: small labels, utility pills, pseudo-system markers, fake metrics, and decorative dashboard jargon are allowed only when they clarify the product. If they are just visual filler, remove them before acceptance.
+
+## Design Decision Layer
+
+Do not reduce the process quality gates. Add decision sharpness before those gates so the concept starts from a stronger point of view.
+
+Before Image Gen for substantial UI, choose the surface architecture with explicit if/then decisions:
+
+- If the surface is an operational dashboard, admin tool, CRM, internal tool, analytics surface, or planning product, choose the dominant work shape first: table, queue, board, timeline, map, matrix, inspector, log, or command center. Let scan/compare/approve/monitor behavior determine layout density. Use restrained style, semantic status treatment, and a selected/detail model. Do not start from a marketing hero, bento grid, or generic KPI wall.
+- If the surface is a product/SaaS page, choose whether the hero proves value through a real workflow preview, product mockup, before/after state, result artifact, or customer environment. Use product anatomy and progression instead of decorative dashboard chrome. Only use interactive hero UI when it clarifies the software or demo.
+- If the surface is a premium consumer, venue, food, fashion, hardware, luxury, or brand-led page, choose the physical or emotional artifact first: product object, material detail, environment, packaging, ritual, craft moment, or result state. Use fewer, stronger images and precise copy. Do not force fake software panels, metrics, or feature cards.
+- If the surface is an editor, builder, code/media tool, canvas, whiteboard, or document product, make the work product visually primary. Choose the creation model and selected object first, then make chrome quiet, dense, typed, and stateful. Inspector fields, layer rows, toolbars, and status bars need their own typography and selected states.
+- If the surface is a mobile transaction, booking, checkout, onboarding, scheduling, or form-heavy flow, choose trust and recoverability over spectacle. Keep the primary action reachable, make validation and confirmation concrete, and use one tactile signature detail such as a selector, progress rail, receipt object, calendar rhythm, map/time block, or product preview.
+- If the surface is a game or playable scene, define the loop before art: move, collect, avoid, aim, drag, solve, race, build, or survive. Readability of player, hazard, goal, reward, terrain, HUD, and controls wins over decoration. Use production art assets when the concept calls for art direction; tune code-native collision to the rendered art.
+- If the surface is content-heavy, editorial, documentation-like, or portfolio-like, choose the reading rhythm first: strong typographic axis, section cadence, media interruptions, proof rail, table/list anatomy, or progressive disclosure. Avoid decorative cards that do not change comprehension.
+
+## Sophistication Ladder
+
+Use this ladder to judge design ambition before accepting a concept and again before final handoff:
+
+- 5/10 polished: clean spacing, readable hierarchy, acceptable responsiveness, no obvious raw defaults. This is not enough when the user asked for standout, premium, redesign, hero, or high-taste work.
+- 7/10 premium: typography, palette, spacing, assets, and component styling feel deliberate; the first viewport is clear and well-finished; generic templates are avoided.
+- 8.5/10 distinctive: one subject-specific signature move is visible; the design could not be created by swapping copy into a generic SaaS, dashboard, portfolio, or launch template; component system, media treatment, and typography all support the same product thesis.
+- 10/10 world-class: composition, typography, material logic, motion, responsive behavior, copy, and interaction state all feel inevitable for this exact product; every major section changes user understanding or decision state; no module exists only to fill rhythm; a senior design agency would have no fixable critique before signoff.
+
+Hard cap rules:
+
+- If the strongest viewport could fit another product by swapping copy, the concept is capped at 6/10 no matter how polished it looks.
+- If typography feels interchangeable, browser-default, or unplanned across controls and data, the concept is capped at 7/10.
+- If the signature element is decorative rather than subject-tied, the concept is capped at 7/10 until revised.
+- If a concept needs one-off override chains, parallel component families, or static screenshot UI to implement, it is capped at 6/10 and must be simplified or regenerated.
+- If the first five seconds do not communicate product, priority, action, and state/result, the concept is not accepted.
+
+## Density And Text-Space Ratio Contract
+
+Use space as a design material, not as leftover area. The goal is controlled richness: never sparse/basic, never crowded/over-explained.
+
+- Before Image Gen and before implementation, choose a density posture: quiet utility, balanced product, editorial premium, dense operations, focused editor, mobile transaction, or game playfield. Density must follow the surface's job rather than the designer's desire to fill the page.
+- For landing, product, brand, and launch first viewports, prefer a disciplined text budget: one headline, one short support line or compact paragraph, one primary action cluster, optional single proof detail, and one dominant visual/product signal. Avoid multi-paragraph above-fold copy, multiple proof rows, stacked badges, or competing mini-sections unless the user supplied that structure.
+- For product/feature sections, use one idea per section. A section should usually have one heading, one tight explanatory unit, and one strong visual, workflow, table, list, or proof object. If three or more ideas fight in one section, split, remove, or reprioritize.
+- For dashboards and tools, dense data is allowed only when it improves scanning, comparison, triage, approval, monitoring, or diagnosis. Dense copy is not the same as dense information. Status, hierarchy, grouping, and row anatomy must carry meaning faster than paragraphs.
+- For editors and canvas tools, the canvas/work product owns the largest share of visual attention. Chrome, inspector copy, and toolbar labels must be precise and compact. If chrome feels louder than the work, reduce or quiet it.
+- For mobile flows, one screen should usually ask for one decision or one step. Use short labels, concrete helper/error text, and a clear primary action. Avoid explanation blocks that push the action or confirmation out of reach.
+- For games, gameplay readability owns the space budget. HUD, instructions, and decoration must not crowd player, hazards, rewards, goal, or route visibility.
+- Quiet space must be intentional: negative space, controlled gutters, breathing room around images/objects, calm material fields, or separation between decisions. Empty gaps that do not improve focus, luxury, rhythm, or comprehension are not good spacing.
+- Overload hard stop: if a viewport has more than 3-4 competing priorities at first glance, it is not accepted. Repair by removing, grouping, demoting, splitting, shortening copy, or giving one visual object clear dominance.
+- Under-designed hard stop: if a viewport is "clean" only because it has few elements, but the remaining components are generic, flat, or default-looking, it is not accepted. Fewer elements require more craft per element.
+
+## Component Craft Contract
+
+Every visible component must look intentionally designed for the accepted visual system. "Good enough", "standard", "basic", "library default", and "mostly fine" fail.
+
+- Treat each component as a premium object with its own craft: typography, padding, radius, border, surface, shadow/elevation, icon alignment, state treatment, focus ring, disabled/loading/error behavior, and mobile wrapping.
+- Buttons, inputs, tabs, nav items, cards/panels, toolbar controls, table rows, chart frames, badges/status tokens, modals, empty states, notifications, command items, and game HUD elements must all pass the same finish bar.
+- A component is not finished until its default, hover, focus, selected/active, disabled, loading, error/success, and responsive states are either implemented or explicitly irrelevant to the requested surface.
+- The weakest repeated component determines the perceived quality of the whole UI. Identify and repair the weakest component before final handoff.
+- If a component still looks like raw shadcn/ui, Tailwind demo UI, browser default, generic SaaS, or a lightly styled placeholder, revise tokens, variants, geometry, type, icon treatment, and state styling before proceeding.
+- Component craft must match the overall style. A beautiful button that belongs to a different visual world is still a mismatch.
+- Prefer fewer, better components over more mediocre modules. If adding another component would lower the average finish level, remove scope or improve the system first.
+
+## Signature Move Discipline
+
+Every substantial UI needs one memorable move, not five accessory effects. Choose the move from the subject matter, then keep the rest of the system disciplined.
+
+- Good signature moves change comprehension: product-in-environment crop, workflow object, proof rail, status spine, command rail, selected canvas object, receipt artifact, timeline spine, map/data overlay, tactile selector, parallax gameplay depth, or result-state reveal.
+- Weak signature moves only decorate: gradient glow, floating blobs, badges, fake metric panels, generic icon rows, oversized rounded wrappers, particle fields, unnecessary 3D, or motion that does not reveal state.
+- If two signature moves compete, keep the one that best proves the product and remove or quiet the other.
+- If no signature move is visible, revise before Image Gen acceptance unless the surface is intentionally quiet utility. For quiet utility, the signature must come from precision: scan path, density control, component polish, and state clarity.
+
+## No Generic Clean Premium
+
+Clean, calm, premium, minimal, and sophisticated are finish qualities, not a design thesis. The thesis must come from the product's workflow, object, material, data shape, environment, user ritual, or outcome.
+
+- Before briefing Image Gen, write the product-specific thesis in one sentence. If the sentence still works after replacing the product name with an unrelated product, revise it.
+- Do not let "premium clean" default to beige editorial, dark neon SaaS, centered hero plus bento, hairline newspaper layout, or generic glass panels.
+- A restrained UI can still be distinctive through typography, density logic, artifact choice, precise copy, material treatment, and state design.
 
 ## Design Direction Schema
 
@@ -194,8 +277,30 @@ Accept a generated concept only when it passes these gates. If any gate fails, r
 - Responsive path: desktop, current viewport, and mobile behavior are inferable before coding; dense regions have a collapse or overflow strategy.
 - Motion storyboard: the concept implies a small set of purposeful motion moments: entrance/reveal, interaction/state transition, and reduced-motion fallback.
 - Code path: the design can become clean reusable components, tokens, and variants without override chains, parallel primitive families, or a monolithic component.
+- Density and text-space ratio: the surface uses a deliberate space budget, avoids copy walls and visual crowding, and is neither overfilled nor under-designed.
+- Component craft: every visible repeated component can plausibly become a high-finish primitive or variant, not a raw library drop or "basic" placeholder.
 - Concept feasibility: reject or simplify concepts that cannot be implemented as clean reusable components, real assets, and verified responsive states within repo constraints. A beautiful impossible image is not an accepted spec.
 - First-use comprehension: within five seconds, the intended user should understand what this is, what matters first, what action is available, and what state/result the UI is showing.
+
+## Concept Scoring Rubric
+
+Score each substantial generated concept before accepting it as the implementation spec. Use 1-5 for each dimension and reject or regenerate when a critical dimension is below 4.
+
+- Subject fit: the visual thesis, artifacts, data, copy, and interaction model belong to this product specifically.
+- First viewport thesis: the opening view communicates product, priority, action, and state/result within five seconds.
+- Type personality: display, body, labels, controls, data, and mobile line breaks feel designed rather than default.
+- Spatial composition: focal hierarchy, asymmetry/counterweight, negative space, section rhythm, edge discipline, and next-section preview are deliberate.
+- Component-system extractability: repeated elements can become shared primitives, tokens, and named variants without override chains.
+- Asset quality: images, icons, logos, product renders, cutouts, backgrounds, and game assets are high-quality, coherent, and implementation-ready.
+- Restraint: no filler modules, unearned badges, fake metrics, decorative icon rows, generic cards, or accessory effects.
+- Copy/content realism: visible copy, labels, sample data, claims, statuses, prices, dates, rows, validation, empty states, and recovery text are concise, specific, plausible, and not generated filler.
+- Density and text-space balance: space, text, controls, media, and data are intentionally proportioned for the surface; no viewport feels stuffed, wordy, hollow, or under-crafted.
+- Component craft: every visible component family looks custom-finished, style-coherent, stateful, and worthy of the overall design quality.
+- Interaction realism: selected, filtered, edited, submitted, confirmed, played, generated, loading, error, empty, disabled, and mobile states are inferable where relevant.
+- Responsive inferability: desktop, current viewport, and mobile collapse/overflow behavior are clear before coding.
+- Implementation feasibility: the design can be built as clean repo-native code, real assets, and verified responsive states inside the task constraints.
+
+Critical gate: `subject fit`, `first viewport thesis`, `component-system extractability`, `copy/content realism`, `density/text-space balance`, `component craft`, and `implementation feasibility` must be at least 4/5. If any one is below 4, the concept is not accepted even when it looks beautiful.
 
 ## Concept Review Mode
 
@@ -206,11 +311,25 @@ Use only when the user asks to generate concepts first, review options, or wait 
 - Do not implement while the user is still reviewing.
 - Once approved, treat the concept as the active spec and follow the fidelity workflow below.
 
+## Autonomy And Approval
+
+Use this to avoid both premature blocking and unapproved creative drift:
+
+- If the user explicitly asks for concept options, review, approval, "show me first", "do not implement yet", or similar, stop after concept generation and wait for approval.
+- If the user says build, make, implement, go, or asks for an end-to-end deliverable in Default mode, the agent may curate and accept the strongest internally generated concept without waiting, unless the direction is genuinely ambiguous, risky, brand-sensitive, or materially divergent.
+- If two or more plausible design directions would produce materially different products, ask before coding unless the user asked for autonomous execution.
+- If the task is a small fix inside an existing design system, skip Image Gen and use the current UI, user screenshot, or existing reference as the spec.
+- If a concept is accepted internally, record the extracted design system, copy lock, component contract, state matrix, and intentional deviations before coding. Do not silently reinterpret it later.
+- If implementation uncovers an unavoidable deviation from the accepted concept, record the smallest deviation, why it is necessary, and how fidelity is preserved elsewhere.
+
 ## Before Coding
 
 Turn the accepted concept into a design system and implementation inventory before coding:
 
 - Exact visible copy, nav items, CTA labels, section headings, proof points, data labels, and important UI text.
+- Copy authority order: user-provided copy and repo truth win; explicit brief copy wins over generated text; generated text is authoritative only when readable, product-safe, and accepted; implementation copy may clarify state/recovery only when it preserves the copy contract.
+- Above-the-fold copy lock: list every allowed hero, nav, eyebrow/kicker/pretitle, badge/pill, CTA, label, subtitle, proof, and primary UI string before coding. Added, removed, renamed, or reordered visible copy later must be fixed or recorded as an intentional deviation.
+- Claim safety: Image Gen must not introduce unverified metrics, awards, testimonials, guarantees, pricing, legal claims, logos, or customer names. Reject, replace, or strip those before implementation unless the user or repo supplied them.
 - Chosen direction record: selected design thesis, rejected direction types, why the winner fits the brief better, and the AI-default risks it avoids.
 - Surface-specific requirements: what this surface must do well, including scan, compare, create, edit, approve, monitor, transact, play, read, or convert.
 - Per-section/state image inventory: source concept screenshot, native aspect, visual priority, readable text, typography relationships, spacing, button/control styling, component/container rules, dominant colors, and any unresolved details that required a fresh extraction screenshot.
@@ -246,6 +365,15 @@ If the concept omits required downstream sections, states, mobile views, or read
 
 - Build the real usable surface first, not a marketing wrapper around a future app.
 - Follow the repo's framework, routing, component, styling, state, accessibility, and asset conventions.
+- Scope before sprawl: unless the user explicitly asks for multiple pages/routes, make the primary requested surface 10/10 before adding more pages. Prefer one brutally polished screen, page, flow, or dashboard over several acceptable ones.
+- Do not create extra pages, routes, sections, panels, or states just to make the app feel bigger. Add them only when requested, required by the workflow, present in the accepted concept, or needed to prove the primary interaction.
+- Work viewport by viewport and component by component. If the first screen or core workflow is not visually signed off, do not continue expanding scope.
+- Translate the accepted concept in this order: product thesis -> tokens -> typography roles -> primitive owners -> variants -> section/state modules -> interaction proof. Do not jump directly from image to page-specific markup.
+- If two UI elements share anatomy, give them one primitive owner and use variants for semantic differences. If they need different semantics but share appearance, keep appearance tokenized and name the semantic variants.
+- If implementing a repeated element requires more than 2-3 local Tailwind/class overrides, stop and repair the primitive, token, or variant instead of adding another local exception.
+- If arbitrary values or one-off CSS accumulate, identify whether the concept needs a new token, a new variant, a local fidelity exception, or a simplified layout. Do not let arbitrary-value drift become the design system.
+- Treat image assets as implementation material, not decoration pasted on top. Match crop, background temperature, lighting, edge softness, shadow, transparency, aspect ratio, and surrounding spacing.
+- Enforce component craft during coding: every repeated component needs a premium default state plus appropriate hover, focus, active/selected, disabled, loading, error/success, and responsive behavior. A visually basic component blocks final handoff.
 - When creating a new complex app UI without an existing framework constraint, use React + Vite by default. Structure it like a senior front-end engineer would: small focused components, a clear app shell, reusable primitives for repeated controls, feature-specific modules for dashboards/tables/charts/forms, separated sample data and state helpers, and shared tokens/styles. Keep `App` as composition glue instead of a monolithic screen implementation.
 - If the repo already uses Next.js, Svelte, Vue, plain HTML, native components, Tailwind, CSS modules, styled systems, shadcn/ui, Radix, Mantine, MUI, Framer Motion, Motion One, or another established stack, integrate with that stack instead of creating a parallel one.
 - Avoid dependency sprawl. Add dependencies only when already present, required by the repo/user, or clearly justified by fidelity, interaction quality, maintainability, performance, or delivery speed.
@@ -302,7 +430,7 @@ Run the app and verify the visible product, not just the build.
 18. Run a final polish pass separate from fidelity: after matching the accepted concept, judge whether the rendered design itself feels finished, sharp, intentional, premium, and product-appropriate. Remove weak filler, soften over-decoration, tighten spacing, fix awkward wraps, strengthen hierarchy, align tiny details that would bother a senior designer, and remove or quiet one accessory-like detail when it adds noise without meaning.
 19. Run the `references/quality-gates.md` premium finish, AI-slop residue repair loop, micro-detail polish, taste review, and world-class agency 10-fix review gates. Final response is blocked if the above-fold or first visible viewport does not feel premium for the intended surface, the strongest visual moment is weak, the identity test fails, first-use comprehension fails, AI-slop residue remains fixable, or any raw/default component-library primitive still looks dropped in instead of designed.
 20. After the first pass that feels finished, run one more brutal design-agency pass: ask what would be fixed with 20 more minutes, choose the highest-impact feasible repairs, and implement them before final instead of merely reporting them.
-21. Run a viewport QA harness manually through Browser/IAB or Playwright fallback: desktop, current viewport, mobile, console errors, overflow/clipping, asset loading, and core interaction state.
+21. Run a viewport QA harness manually through Browser/IAB or Playwright fallback: desktop, current viewport, mobile, console errors, overflow/clipping, asset loading, and core interaction state. Use `scripts/ui-qa-harness.mjs` when Browser/IAB is unavailable, a repeatable artifact is useful, or overflow/text-density/component counts need quick evidence. The script does not replace `view_image`.
 22. Ask explicitly: is this agency-signoff faithfully implemented, and would a great, highly skilled design agency sign off on this exact implementation of the accepted design? If anything would get a design-review comment, write a concrete repair checklist and keep editing. Do not final-answer with fixable visual issues.
 23. Verify generated assets load, are framed correctly, and do not obscure text or controls.
 24. Prove the primary interaction path with real local state: selected, edited, filtered, submitted, confirmed, played, or generated result. Visual-only controls fail unless intentionally static.

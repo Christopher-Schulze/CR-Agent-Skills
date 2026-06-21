@@ -1,6 +1,6 @@
 # Quality Gates Reference
 
-Use this reference before implementation and during final verification for substantial UI. These gates convert taste into enforceable checks.
+Use this reference before implementation and during final verification for substantial UI. These gates convert taste into enforceable checks. Use `score-anchors.md` when a verdict is ambiguous, `failure-taxonomy.md` when the weakness is hard to diagnose, `golden-quality-examples.md` when calibration is fuzzy, and `qa-report-template.md` when a written evidence artifact is needed.
 
 ## Component Integrity Gate
 
@@ -12,6 +12,16 @@ Use this reference before implementation and during final verification for subst
 - Raw, unstyled, default-looking components fail this gate. The component system must look intentionally designed for the accepted concept while staying architecturally unified.
 - Wrapper components that only add styling are suspicious; prefer a real primitive variant or shared layout primitive.
 - One-off styling is allowed only for accepted-concept fidelity and must remain isolated, named, and justified.
+
+## Implementation Translation Gate
+
+- Translate the accepted concept through a real system: product thesis -> tokens -> typography roles -> primitive owners -> variants -> section/state modules -> interaction proof.
+- Do not implement directly from image to page-specific markup when repeated anatomy exists. Repeated anatomy needs a primitive owner or shared layout primitive.
+- Similar appearance with different meaning should become semantic variants, not copied class chains.
+- Similar meaning with different appearance should be reconciled into tokenized states, not parallel component families.
+- Arbitrary values are allowed only for isolated fidelity exceptions. Repeated arbitrary values mean the design system is missing a token, scale, or variant.
+- If a faithful implementation would require fragile hardcoded dimensions, static screenshot UI, hidden overflow hacks, or override chains, revise the component plan or simplify the concept before coding.
+- Generated assets must be translated as production assets: crop, aspect ratio, background temperature, edge softness, transparency, shadow, lighting, and surrounding spacing must match the accepted visual world.
 
 ## Styling Conflict Gate
 
@@ -30,6 +40,66 @@ Use this reference before implementation and during final verification for subst
 - Section transitions: adjacent sections should connect through shared gutters, bands, type rhythm, color cadence, media framing, or motion.
 - Mobile line breaks: headings, CTAs, nav, controls, table cells, labels, and error text must wrap intentionally.
 - Next-section preview: landing/product first viewports should hint at what follows unless the accepted concept clearly does otherwise.
+
+## Composition Decision Gate
+
+- One focal point per viewport. Secondary objects may support it, but they must not compete with the primary product signal or action.
+- Asymmetry needs counterweight: media mass, type scale, whitespace, rail, object crop, or color field must balance the composition optically.
+- Negative space must frame priority. Empty space that does not improve comprehension, luxury, rhythm, or focus is just a gap.
+- Repetition needs variation in at least one dimension: density, alignment, scale, media ratio, content type, or interaction state. Repeating the same centered block or card grid fails.
+- Every section must change user understanding, trust, decision state, or task progress. Remove or redesign sections that only provide visual rhythm.
+- The first viewport needs a product/world signal, clear action, and a hint of continuation unless the accepted concept intentionally uses a self-contained tool canvas or game surface.
+- Edge discipline matters: outer margins, gutters, section starts, section endings, and mobile safe areas must feel designed rather than incidental.
+
+## Density And Overload Gate
+
+- Choose the intended density posture before judging the screen: quiet utility, balanced product, editorial premium, dense operations, focused editor, mobile transaction, or game playfield.
+- A viewport fails when it has more than 3-4 competing priorities at first glance. Repair by removing, grouping, demoting, splitting, shortening copy, or giving one product object clear dominance.
+- A viewport also fails when it is clean only because it is empty. Quiet space must carry focus, luxury, rhythm, separation, or comprehension. Blankness without component craft is under-designed.
+- Landing/product first viewports should usually keep copy and controls disciplined: one headline, one support unit, one action cluster, optional single proof detail, and one dominant visual/product signal.
+- Product sections should usually carry one idea per section. If a section needs multiple paragraphs, many bullets, several cards, and multiple visuals to explain itself, it needs stronger hierarchy or less content.
+- Dashboards may be dense with structured information, not dense with prose. Tables, statuses, grouping, columns, rows, timelines, maps, and inspectors should carry scan value faster than text blocks.
+- Editors must keep the work product visually primary. If chrome, sidebars, helper text, or panels dominate the canvas/document/media, reduce or quiet them.
+- Mobile screens should usually ask for one decision or one step. If copy pushes the primary action or confirmation below comfortable reach, cut or restructure.
+- Games must reserve space for player, hazards, rewards, goals, route readability, and HUD clarity. Decorative scene detail cannot crowd gameplay.
+
+## Text Economy Gate
+
+- Every visible text block must improve orientation, decision-making, trust, recovery, state comprehension, or action. If it only fills rhythm, remove it.
+- Prefer one sharp sentence over a paragraph, and a visual proof over a bullet list when the visual can carry the point.
+- Above the fold, avoid multi-paragraph explanations, duplicated claims, repeated CTA wording, stacked badge/pill/proof rows, and generic benefit lists unless supplied by the user or required by the product.
+- Labels and helper text must be concrete and user-side. Vague words like smart, seamless, powerful, next-gen, intuitive, scalable, and optimized need product-specific proof or removal.
+- Dense data surfaces can use many labels and values, but they must be short, aligned, grouped, and scan-oriented.
+- Error, empty, success, and confirmation copy must be concise but complete: what happened, what changed, or what to do next.
+
+## Component Craft Gate
+
+- Every visible component family must look custom-finished for the accepted design system, not merely functional. "Okay", "basic", "standard", and raw component-library styling fail.
+- Inspect buttons, inputs, tabs, nav items, cards/panels, toolbar controls, table rows, chart frames, badges/status tokens, modals, empty states, notifications, command items, game HUD, and mobile controls.
+- Each component needs deliberate typography, padding, radius, border, surface, shadow/elevation, icon alignment, state styling, focus treatment, disabled/loading/error/success behavior where relevant, and responsive wrapping.
+- The weakest repeated component determines the perceived quality of the entire UI. Find it and fix it before final.
+- If a component would still look plausible in a default shadcn/ui, Tailwind, or browser demo after changing colors, it is not crafted enough.
+- Component quality must be style-coherent. A polished component from the wrong visual world is still a mismatch.
+- Prefer fewer component families with higher craft over many mediocre modules.
+
+## Component Specimen Pass
+
+Before final response for substantial UI, inspect at least five concrete component specimens from the rendered product, or every component family if fewer than five exist.
+
+- Name the primitive owner or shared component for each specimen.
+- Check default, hover, focus, selected/active, disabled, loading, error/success, and responsive behavior when relevant.
+- Check typography, optical alignment, icon treatment, padding, surface, border, radius, shadow, and mobile wrapping.
+- Identify the weakest specimen and repair it before final handoff. Do not merely report that it is weak when it is feasible to fix.
+
+## Typography Excellence Gate
+
+- Typography must have separate roles for display, body, UI/control text, labels/captions, data/numeric values, and mobile line breaks where relevant.
+- Display type carries identity. UI/control type carries precision. Data type carries scan speed. Do not let all text inherit the same default size, weight, and line height.
+- H1 and hero copy line breaks must be actively designed on desktop and mobile. Awkward single-word lines, cramped wraps, or swallowed CTAs fail.
+- Buttons, tabs, filters, sidebars, toolbar controls, inspector fields, table cells, chart labels, status tokens, command items, and mobile controls need deliberate font size, weight, line height, and casing.
+- Numeric/data-heavy surfaces need consistent numeric rhythm: alignment, tabular figures where supported, status/value hierarchy, and readable chart/table labels.
+- Label casing and action vocabulary must be consistent across nav, controls, statuses, empty states, errors, and confirmations.
+- If typography looks interchangeable with a default Tailwind/shadcn demo after removing colors, it is not sophisticated enough.
 
 ## First-Use Comprehension Gate
 

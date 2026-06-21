@@ -9,6 +9,15 @@ Use this reference for mobile-first apps, booking, checkout, signup, onboarding,
 - Style intensity usually sits at 4-7/10 for utility flows and 7-9/10 for premium consumer flows when brand trust remains high.
 - Use one signature detail: tactile selector, calendar rhythm, ticket/card metaphor, product preview, progress rail, map/time block, receipt/confirmation object, or branded empty state.
 
+## Signature Move Catalog
+
+- If the flow is booking or scheduling, make date, time, availability, timezone, selected slot, and confirmation object unmistakable.
+- If the flow is checkout or payment, make review, totals, trust, error recovery, and success receipt clearer than brand decoration.
+- If the flow is onboarding or signup, make progress, required effort, validation, skip/back behavior, and post-submit next action visible.
+- If the flow is food, restaurant, retail, or configuration, make the selected product/order state tactile and inspectable before checkout.
+- If the flow is settings or account management, prioritize reversibility, current state, disabled/locked reasons, and confirmation.
+- Signature detail should reduce uncertainty: selector feedback, progress rail, receipt, map/time block, product preview, or recovery state. Do not use fake trust badges or unverifiable urgency.
+
 ## Required States
 
 - Default, focused, invalid, loading, disabled, success, failure, empty, back/cancel, confirmation, and recovery.

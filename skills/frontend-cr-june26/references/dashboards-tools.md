@@ -10,6 +10,16 @@ Use this reference for dashboards, admin tools, CRMs, internal tools, operations
 - Choose one product-specific visual idea: status rail, timeline spine, dense comparison table, map/data overlay, focused inspector, live operations wall, or workflow canvas.
 - Style intensity usually sits at 4-7/10. Push higher only when it improves comprehension or product identity.
 
+## Signature Move Catalog
+
+- If the primary workflow is triage, use a queue, status rail, risk spine, or selected-detail inspector. Do not lead with aggregate KPI tiles.
+- If the workflow is comparison, use a dense table, matrix, split inspector, diff view, or ranked list with stable columns and semantic status.
+- If the workflow is monitoring, use a live operations wall, map/data overlay, event timeline, anomaly stream, or alert lane with clear severity.
+- If the workflow is planning, use timeline spans, capacity bands, dependency rails, calendar rhythm, or resource lanes instead of generic cards.
+- If the workflow is reporting, use evidence hierarchy: source table, chart, narrative summary, and export/share action. Avoid charts that do not answer a decision.
+- Signature detail should come from the domain: claim status, shipment route, incident severity, forecast confidence, approval stage, patient/provider state, account risk, inventory pressure, or another real operational concept.
+- Keep the move restrained. A dashboard's memorable quality often comes from scan speed, exact density, status semantics, and precise chrome rather than spectacle.
+
 ## Data Realism Pack
 
 - Define realistic entities, identifiers, statuses, owners, dates, priorities, amounts, risk labels, and row counts.

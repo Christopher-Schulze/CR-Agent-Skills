@@ -10,6 +10,15 @@ Use this reference for design tools, code editors, media editors, document/canva
 - Choose one signature product mechanic: layer rail, property inspector, command palette, timeline, node graph, mini-map, preview mode, or generation result stack.
 - Style intensity usually sits at 5-8/10. Chrome can be quiet while the canvas/product output carries more visual character.
 
+## Signature Move Catalog
+
+- If the product edits visual objects, make the selected object, handles, guides, inspector fields, and layer row agree on one state.
+- If the product edits documents or code, make the text/content surface primary; chrome should provide navigation, structure, review, command, or publish state without overpowering reading.
+- If the product generates output, use a generation result stack, prompt/context rail, preview diff, version strip, or confidence/provenance surface as the signature mechanic.
+- If the product arranges systems, use node graph, timeline, dependency map, mini-map, or structured canvas regions instead of generic cards.
+- If the product exports or publishes, make preview mode, export controls, and output artifact feel like one flow.
+- Signature detail should explain creation: selection, transformation, comparison, generation, annotation, preview, or publish state. Purely decorative chrome fails.
+
 ## Required UI Anatomy
 
 - App shell: top bar, primary tools, secondary tools, canvas/document/media area, inspector/sidebar, status bar, and output/export controls when relevant.

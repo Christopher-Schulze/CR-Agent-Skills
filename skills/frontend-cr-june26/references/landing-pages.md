@@ -10,6 +10,15 @@ Use this reference for landing pages, company sites, product pages, launch pages
 - Set style intensity by category: utilitarian B2B pages usually need 5-7/10; premium product or launch pages can go 8-9/10; experimental editorial pages need explicit user or brand fit.
 - Use one memorable spatial move: asymmetrical media crop, strong typographic axis, product-in-environment frame, scroll rhythm, proof rail, or grounded 3D/product moment.
 
+## Signature Move Catalog
+
+- If the offer is software, prove workflow with a real product state, result artifact, before/after, or focused product anatomy. Do not use decorative dashboard chrome.
+- If the offer is physical, prove material, craft, scale, packaging, environment, or use ritual with strong media and restrained copy.
+- If the offer is service or agency, prove judgment, process, evidence, outcomes, or client context. Avoid fake awards, fake logos, and vague excellence claims.
+- If the offer is venue, restaurant, hospitality, or local place, make the place/object/menu/ritual visible in the first viewport. Do not hide the real thing behind atmospheric gradients.
+- If the offer is technical infrastructure, make architecture, reliability proof, protocol/data shape, or operational result the visual thesis.
+- Signature detail should answer "why this, why now, why trust" through one artifact, not through a pile of benefits.
+
 ## Required Structure
 
 - First viewport: brand signal, clear offer, primary action, product/world signal, and a hint of the next section.

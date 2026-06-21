@@ -10,6 +10,15 @@ Use this reference for browser games, playful interactive scenes, toy apps, simu
 - Style intensity can be high, but gameplay clarity outranks decoration.
 - Use custom SVG/canvas/Three.js/pixel art/code-native art only when it is the right medium; use Image Gen for production raster assets when the skill requires visual game art.
 
+## Signature Move Catalog
+
+- If the core loop is movement, make terrain grammar, acceleration, jump/drag timing, forgiveness, and restart speed the signature feel.
+- If the loop is collection, make collectible silhouettes, reward feedback, route choice, score/progress, and risk/reward spacing obvious.
+- If the loop is avoidance or survival, make hazard language, warning timing, safe zones, damage state, and fail/restart readable before decoration.
+- If the loop is solving or matching, make the board/object state, legal moves, feedback, and win condition visible without instructions.
+- If the loop is building or arranging, make placement affordance, grid/physics response, object inventory, and result preview feel tactile.
+- Signature detail should come from play readability: silhouette language, parallax depth, terrain material, hazard contrast, HUD hierarchy, or tactile control feedback. Poster-like polish is not enough.
+
 ## Asset Pass
 
 - Generate or create the play surface concept first.

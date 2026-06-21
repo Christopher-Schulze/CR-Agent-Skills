@@ -5,6 +5,8 @@ Use this reference with the installed @imagegen skill when Frontend CR June26 ne
 ## Contents
 
 - Must Include
+- Copy Authority
+- Density, Space, And Component Craft
 - Quality Bar
 - Visual Direction Defaults
 - State, Responsive, Motion, And Content Planning
@@ -28,11 +30,45 @@ Copy concrete details from the user request, screenshots, existing app, or plan.
 - Implementation constraints: code-native app UI text and controls, fully rendered product/background assets with their own text and branding when appropriate, separable assets, reusable component families, clear design-system tokens, accessible/responsive layout, and practical production design-spec handoff. For complex dashboards, tools, editors, or multi-panel product surfaces, assume a React + Vite implementation unless the user or repo specifies otherwise, with a component structure a strong front-end engineer would recognize.
 - Technology constraints: repo/user stack wins; React + Vite is only the complex greenfield default; current Tailwind, shadcn/ui, icon, and motion syntax must be verified before use.
 - Direction decision: when art direction is under-specified, compare 2-3 genuinely divergent directions first and brief only the strongest one. Minor palette swaps are not alternatives.
+- Style archetype decision: use `references/style-archetypes.md` when the visual world is open, then choose one primary archetype with at most one minor accent before briefing Image Gen.
+- Calibration decision: use `references/golden-quality-examples.md` when "premium" or "sophisticated" could still collapse into acceptable-but-generic output.
+- Density decision: name the intended space/text/visual posture before generation. Ask for disciplined text, intentional quiet space, one dominant focal object or task per viewport, and no crowded multi-priority first screen.
 - Style intensity: choose utility, polished product, premium brand, high-end memorable, or experimental intensity based on product type and user direction.
+- Design decision anchor: use `references/design-decision-examples.md` when the direction could drift into generic premium UI. The brief should name the chosen surface archetype, rejected default pattern, and one subject-specific signature move.
 - Taste and architecture constraints: ground the design in the product's subject matter, audience, workflow, domain artifacts, and emotional tone; make the hero or first viewport a thesis that opens with the most characteristic thing in the product's world; choose the single signature element this interface will be remembered by and one justified aesthetic risk; require a coherent token/component system that can become clean reusable code rather than one-off styling.
 - State, content, motion, and responsive constraints: include required UI states, realistic domain data/copy, a small purposeful motion story, and a clear mobile/collapse strategy before the concept can become implementation spec.
+- Component craft constraints: visible buttons, inputs, cards/panels, navigation, status tokens, rows, toolbars, modals, empty states, and mobile controls should look custom-finished inside one visual system, not like raw component-library primitives.
 - Quality-gate constraints: concept must support component integrity, spatial composition, motion system, and taste review gates before coding.
-- Negative constraints: no header-only crops for full-surface work, no extra product areas, no fake metrics, no decorative filler, no default card grids, no hero eyebrow/kicker/pretitle/badge/pill above the main heading unless explicitly requested or present in the reference, no gradients that conflict with the design direction, no pasted-in images that fail to blend with the background, no unrelated sections, no new claims, and no moving true app UI text into images.
+- Negative constraints: no header-only crops for full-surface work, no extra product areas, no fake metrics, no decorative filler, no default card grids, no hero eyebrow/kicker/pretitle/badge/pill above the main heading unless explicitly requested or present in the reference, no gradients that conflict with the design direction, no pasted-in images that fail to blend with the background, no unrelated sections, no new claims, no copy walls, no crowded first viewport, no generic "basic" components, and no moving true app UI text into images.
+
+## Copy Authority
+
+Use this authority order before, during, and after Image Gen:
+
+1. User-provided copy, screenshots, repo docs, and existing app text are authoritative.
+2. The written brief is authoritative when it restates user/repo copy exactly.
+3. Generated text is authoritative only when it is readable, product-safe, and explicitly accepted as part of the concept.
+4. Unreadable generated text is visual/layout evidence only, not production copy.
+5. Agent-written copy may fill gaps only when the user did not supply copy, it is concrete to the product, and it does not introduce unverified claims.
+
+Reject, replace, or strip generated claims when Image Gen invents metrics, awards, testimonials, customer logos, pricing, legal claims, guarantees, scarcity, or product capabilities not supplied by the user or repo.
+
+Keep app UI text code-native: navigation, buttons, forms, tables, metrics, controls, status labels, and error/recovery copy belong in code. Keep text inside raster assets only when the text belongs to a product image, poster, packaging, sign, brand mark, background scene, or other rendered object.
+
+Before coding, build an above-the-fold copy lock from user/repo/brief text plus any readable accepted concept text. Later additions, removals, renames, or reordering must be fixed or recorded as intentional deviations.
+
+## Density, Space, And Component Craft
+
+Ask Image Gen for visual economy, not visual emptiness. The concept should feel edited: fewer competing elements, stronger hierarchy, and more craft in every remaining component.
+
+- Text budget: landing/product first viewports should usually contain one headline, one short support unit, one primary action cluster, optional single proof detail, and one dominant visual/product signal. Dense dashboards and tools may include more labels/data, but they must be structured for scanning rather than prose.
+- Space budget: quiet areas should be intentional negative space, calm material fields, product/object breathing room, or decision separation. Do not ask for empty filler gaps.
+- Priority budget: each viewport should have one dominant focal point and no more than 3-4 immediate priorities. If the concept needs many equal elements, ask for stronger grouping or hierarchy.
+- Section budget: one idea per section by default. Avoid sections that combine headline, paragraph, many cards, multiple images, proof rows, badges, and CTAs unless the user specifically provided that information architecture.
+- Component craft: ask for each visible component family to look custom-designed: buttons, inputs, nav, cards/panels, rows, tabs, status tokens, modals, chart frames, toolbar controls, empty states, and mobile controls. Components should show intentional typography, padding, shape, border/elevation, icon treatment, and state affordance.
+- Scope budget: unless the task requires multiple pages, ask for a complete primary surface or flow state rather than many weak pages. One flagship screen at 10/10 is better than several acceptable screens.
+- Overload rejection: reject concepts that look filled because Image Gen added extra badges, cards, metrics, labels, copy blocks, section fragments, or decorative controls.
+- Under-design rejection: reject concepts that look clean only because they are empty, generic, or component-light without premium detail.
 
 ## Quality Bar
 
@@ -50,6 +86,8 @@ Every concept should feel like a professional product mockup by a senior product
 - Coherent full-page rhythm across sections, states, and responsive continuation, without repetitive card stacks or repeated section formulas.
 - Cohesive section-to-section flow: connect sections with shared spacing, palette, type rhythm, media treatment, and subtle transitions, not by inventing major new UI components.
 - Excellent typography and intentional whitespace, including buttons, tabs, inputs, sidebars, table cells, labels, and other control chrome.
+- Ideal text/space/visual balance: controlled copy, intentional quiet space, one clear focal point per viewport, and no crowded or hollow areas.
+- Every component looks crafted: not a default button, raw card, generic input, token badge, or table row lightly styled into place.
 - Simpler by default: fewer, stronger visual elements instead of filling the page with illustrations, iconography, decorative widgets, or complex UI chrome.
 - Consistent visual system: palette, gradients, spacing, components, icon style, imagery, shadows, borders, and container model.
 - Icon fidelity matters when icons are present: preserve metaphor, stroke weight, filled vs outline style, corner shape, size, color, alignment, spacing, and states.
@@ -83,6 +121,7 @@ Before writing the Image Gen brief, choose a compact visual direction that fits 
 - Prefer one or two high-quality image or illustration moments over many small decorative visuals. Use iconography only when it clarifies navigation, controls, or product meaning.
 - Prefer open layouts, strong bands, rails, lists, tables, canvases, and purposeful single frames over nested cards, giant rounded section wrappers, default bento grids, or overcompartmentalized dashboards.
 - Long pages should vary rhythm across sections: density, image-to-text ratio, alignment, scale, whitespace, and visual tempo should change deliberately while preserving one palette, typography system, component family, and spacing logic.
+- Keep text/space ratio intentional across sections. Avoid back-to-back text-heavy sections, repeated card stacks, or decorative whitespace with no product role.
 - Multi-section pages should feel like one cohesive website through shared gutters, background bands, alignment, typography rhythm, recurring media frames, color cadence, and restrained transitions. Do not add major new carousels, accordions, pricing cards, dashboards, forms, tab systems, feature grids, or other component families unless the user requested them or the accepted concepts show them.
 - Ask for media and generated imagery in implementation-friendly frames: stable aspect ratios, consistent crop/radius/shadow logic, and clear placement in the layout. Avoid random image sizes, pasted-looking crops, or uncontrolled collage systems unless the user requests that style.
 - UI restraints: small labels, utility pills, pseudo-system markers, fake metrics, and decorative dashboard jargon should appear only when they communicate real structure or product meaning.
@@ -106,9 +145,12 @@ Before accepting a generated concept, reject or regenerate it if:
 - The strongest viewport could be reused for another product by swapping copy.
 - It has no subject-specific screenshot-worthy moment.
 - It relies on nice-looking but meaningless cards, labels, badges, icons, fake metrics, or decorative panels.
+- It is crowded, over-explained, copy-heavy, or visually filled with too many same-priority elements.
+- It is empty/minimal but still generic, weak, basic, or under-crafted.
 - The hero/first viewport lacks a clear thesis or product-specific focal point.
 - The concept has no justified aesthetic risk, or the risk is generic spectacle rather than a subject-specific choice.
 - Typography looks interchangeable, browser-default, or not intentionally scaled across content and controls.
+- Visible components look basic, raw, default-library-like, or only lightly styled.
 - The design has no extractable component system: repeated controls do not share clear variants, tokens, spacing, and icon logic.
 - Spatial composition is weak: unclear focal hierarchy, poor optical alignment, accidental whitespace, repetitive density rhythm, weak section transitions, or unresolved mobile line breaks.
 - Complex app states are missing, generic, or impossible to infer before coding.
@@ -118,8 +160,14 @@ Before accepting a generated concept, reject or regenerate it if:
 - The layout cannot realistically become clean maintainable code without override chains or parallel component families.
 - The concept cannot be implemented as clean reusable components, real assets, and verified responsive states within repo constraints. A beautiful impossible image is not an accepted spec.
 - A first-time user would not understand within five seconds what this is, what matters first, what action is available, and what state/result the UI is showing.
+- Any critical scoring dimension from the main skill rubric is below 4/5: subject fit, first viewport thesis, component-system extractability, copy/content realism, or implementation feasibility.
+- Density/text-space balance or component craft scores below 4/5.
+- The signature move is only decorative and does not prove the product, workflow, material, data shape, environment, ritual, or result.
+- "Clean premium" is the only thesis. Finish quality is not enough without a product-specific decision.
 
 Revise the brief and regenerate when these failures appear.
+
+Use `references/failure-taxonomy.md` when the failure feels hard to name. Repair the cause, not just the visible symptom.
 
 ## Image Count And Clarity
 
@@ -182,12 +230,16 @@ Content-heavy pages:
 - Extract an icon inventory before coding: every visible icon, glyph, chevron, logo-like mark, toolbar symbol, status symbol, and empty-state symbol, including meaning, outline vs filled style, stroke width, size, color, container, alignment, spacing, and state treatment.
 - If any required detail is still unclear, generate a new standalone section/state/detail image before coding. Do not crop the previous image as a shortcut.
 - Extract a design system before coding: native aspect, layout, section order, copy, nav, CTAs, palette, spacing scale, content typography, UI chrome typography, reusable component families, variants, container model, assets, state, and responsive continuation. Explicitly identify whether each background is true white, off-white, cream, gray, dark, or tinted.
+- Extract a density and text-space contract before coding: intended density posture, max visible priorities per viewport, copy budget, dominant visual/object, quiet-space role, section idea count, and overload/under-design risks.
+- Extract a component craft contract before coding: each visible component family, premium details required, state variants, weakest likely component, and what would make it look default/basic.
 - Extract an art direction contract before coding: product-specific design thesis, audience, tone, the signature element this interface will be remembered by, typography roles, material coherence, motion role, and anti-slop risks to avoid.
+- Use `references/concept-contract.md` as the compact internal acceptance record when the surface is substantial or taste-critical.
 - Extract a component system contract before coding: primitives, variants, tokens, status/priority semantics, shared layout primitives, and allowed fidelity exceptions.
 - Extract a spatial composition contract before coding: focal hierarchy, optical alignment, breathing room, density rhythm, section transitions, edge discipline, mobile line breaks, and next-section preview where relevant.
 - Extract a motion system contract before coding: implementation path, duration bands, easing character, entrance pattern, state transition pattern, optional product-tactility moment, which hierarchy/state/tactility/navigation purpose each cue serves, reduced-motion behavior, and performance risks.
 - Extract a copy contract before coding when the UI contains generated copy: user-side naming, stable action vocabulary, empty-state action, concrete error recovery, and labels that match the audience.
 - Extract a state matrix, content/data realism check, responsive behavior plan, motion storyboard, interaction proof path, and asset manifest before coding. If any of these cannot be inferred, generate a clearer state/detail concept first.
+- Apply the concept scoring rubric before coding. Use `references/score-anchors.md` for concrete 1-5 anchors; if any critical score is below 4/5, regenerate or revise instead of implementing a weak concept faithfully.
 - Treat the accepted concept as the visual spec. Match composition, hierarchy, palette, gradients, typography, spacing, imagery, components, container model, and asset treatment. Do not strip text or branding out of generated product/background assets just because app UI text should stay code-native.
 - Do not reinterpret the palette for taste. Do not replace white backgrounds with cream/off-white, warm up neutral backgrounds, cool down surfaces, or shift accent colors unless the accepted concept visibly does that.
 - Do not add a color overlay, tint, or translucent wash over a hero image unless the accepted concept clearly has one. If a hero image needs help blending into the surrounding page, prefer a matching generated asset, transparent cutout, edge fade, mask, or background gradient around the image instead of an overlay on top of the image.

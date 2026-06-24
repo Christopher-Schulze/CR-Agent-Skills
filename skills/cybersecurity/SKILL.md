@@ -1,6 +1,6 @@
 ---
 name: cybersecurity
-description: Router for local cybersecurity skills. Use only when the user asks for cybersecurity/security skills or concrete security work: review, hardening, threat modeling, vuln triage, incident response, DFIR, detection, malware, AppSec, cloud, AI/MCP, supply-chain, compliance, or authorized testing.
+description: Router for local cybersecurity skills. Use only when the user explicitly asks for cybersecurity/security skills, or for concrete security tasks: security review, secure coding, security hardening, threat modeling, vulnerability triage, incident response, DFIR, threat hunting, detection engineering, malware analysis, AppSec, cloud security, AI/MCP security, supply-chain security, security compliance, or authorized pentest/red-team work.
 ---
 
 # Cybersecurity Skill Router
@@ -19,16 +19,17 @@ Resolve all relative paths from the selected skill directory. If a selected skil
 ## Routing Workflow
 
 1. If the request is not a concrete security task and does not explicitly ask for cybersecurity skills, do not use this router further.
-2. Classify the task into the narrowest domain: secure coding, threat model, ownership risk, incident response, DFIR, cloud security, AppSec, AI/MCP security, supply-chain security, vulnerability triage, detection engineering, malware analysis, compliance, or authorized testing.
+2. Classify the task into the narrowest domain: secure coding, threat model, ownership risk, incident response, DFIR, cloud security, AppSec, AI/MCP security, supply-chain security, vulnerability triage, detection engineering, malware analysis, security compliance, or authorized testing.
 3. Check the three curated skills above first when the domain matches exactly.
 4. Search the compact routing index before opening sub-skill files:
    - `rg -n -i '<domain|tool|technique|framework>' routing-index.tsv`
-5. If the index is missing or ambiguous, search cheaply by skill directory name:
+5. If a multi-word query has no index hits, retry with the exact tool, framework, vulnerability class, or technique name alone.
+6. If the index is missing or ambiguous, search cheaply by skill directory name:
    - `find skills -mindepth 1 -maxdepth 1 -type d | rg -i '<domain|tool|technique|framework>'`
-6. If directory names are still not enough, search `name:`, `description:`, `domain:`, `subdomain:`, and `tags:` lines in `skills/*/SKILL.md`.
-7. Select exactly one narrowest matching skill. Prefer exact technology/workflow matches over broad category matches.
-8. Read the selected `SKILL.md` completely. Then read only referenced files needed for the user's task.
-9. If no local skill is a real match, say so briefly and continue with normal security engineering judgment.
+7. If directory names are still not enough, search `name:`, `description:`, `domain:`, `subdomain:`, and `tags:` lines in `skills/*/SKILL.md`.
+8. Select exactly one narrowest matching skill. Prefer exact technology/workflow matches over broad category matches.
+9. Read the selected `SKILL.md` completely. Then read only referenced files needed for the user's task.
+10. If no local skill is a real match, say so briefly and continue with normal security engineering judgment.
 
 ## Safety And Scope
 

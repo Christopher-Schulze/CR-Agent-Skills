@@ -1,0 +1,4 @@
+interface:
+  display_name: "SkillSpector"
+  short_description: "Audit skills before install"
+  default_prompt: "Use $skillspector to audit this skill or skill repository before installation."
